@@ -183,6 +183,31 @@ a{color:inherit;text-decoration:none}
 .mini-row{display:flex;gap:8px;margin:25px 0}.mini-row i{height:35px;flex:1;background:#dfeff1;border-radius:8px}
 .mini-card{height:94px;background:#e7eff0;border-radius:14px;margin-top:10px}.mini-card.short{height:58px}
 .lb-badge{position:absolute;left:10%;bottom:12%;font:900 92px "Barlow Condensed";color:rgba(255,255,255,.08);letter-spacing:-.08em}
+
+.project-visual-real{
+  padding:clamp(22px,3vw,42px);
+  background:
+    radial-gradient(circle at 70% 25%,rgba(255,31,45,.14),transparent 35%),
+    linear-gradient(145deg,#0c0c0f,#070708 62%,#100609);
+}
+.project-shot-frame{
+  position:relative;width:100%;max-width:880px;margin:auto;
+  border:1px solid rgba(255,255,255,.13);
+  background:#050505;overflow:hidden;
+  box-shadow:0 26px 90px rgba(0,0,0,.55);
+}
+.project-shot-frame:before{
+  content:"";position:absolute;inset:0;z-index:2;pointer-events:none;
+  box-shadow:inset 0 0 0 1px rgba(255,31,45,.10),inset 0 -80px 120px rgba(0,0,0,.16);
+}
+.project-shot{display:block;width:100%;height:auto}
+.project-shot-label{
+  position:absolute;left:16px;bottom:14px;z-index:3;
+  padding:8px 11px;border:1px solid rgba(255,31,45,.4);
+  background:rgba(4,4,5,.82);backdrop-filter:blur(10px);
+  color:#ddd;font:700 10px "Barlow Condensed";letter-spacing:.18em;
+}
+
 .project-grid{display:grid;grid-template-columns:1.2fr .8fr;gap:20px;margin-top:20px}
 .coming,.next{min-height:540px}
 .coming-bg{
