@@ -8,9 +8,9 @@ const glow =
   document.getElementById('cursorGlow');
 
 
-// ==============================
+// ============================================================
 // MENU
-// ==============================
+// ============================================================
 
 if (toggle && nav) {
 
@@ -53,9 +53,9 @@ if (toggle && nav) {
 }
 
 
-// ==============================
+// ============================================================
 // REVEAL
-// ==============================
+// ============================================================
 
 const observer =
   new IntersectionObserver(
@@ -64,9 +64,7 @@ const observer =
       entries.forEach(
         entry => {
 
-          if (
-            entry.isIntersecting
-          ) {
+          if (entry.isIntersecting) {
 
             entry.target
               .classList
@@ -86,18 +84,16 @@ const observer =
 
 document
   .querySelectorAll('.reveal')
-  .forEach(
-    el => {
+  .forEach(el => {
 
-      observer.observe(el);
+    observer.observe(el);
 
-    }
-  );
+  });
 
 
-// ==============================
+// ============================================================
 // CURSOR GLOW
-// ==============================
+// ============================================================
 
 if (glow) {
 
@@ -120,9 +116,9 @@ if (glow) {
 }
 
 
-// ==============================
+// ============================================================
 // YEAR
-// ==============================
+// ============================================================
 
 const year =
   document.getElementById('year');
@@ -140,9 +136,7 @@ if (year) {
 // ============================================================
 
 const heroGauge =
-  document.getElementById(
-    'heroGauge'
-  );
+  document.getElementById('heroGauge');
 
 if (heroGauge) {
 
@@ -161,22 +155,31 @@ if (heroGauge) {
 
   let targetRpm = 0;
 
-  let idleTimer = null;
+  let mode =
+    'startup';
 
-  let redlineTimer = null;
+  let nextRevTime =
+    performance.now() + 5000;
+
+  let revEndTime = 0;
 
   let lastFrame =
     performance.now();
 
 
-  const minRpm = 0;
+  const MAX_RPM =
+    9000;
 
-  const maxRpm = 9000;
+  const START_ANGLE =
+    -118;
 
-  const startAngle = -118;
+  const END_ANGLE =
+    118;
 
-  const endAngle = 118;
 
+  // ==========================================================
+  // HELPERS
+  // ==========================================================
 
   function clamp(
     value,
@@ -185,10 +188,7 @@ if (heroGauge) {
   ) {
 
     return Math.min(
-      Math.max(
-        value,
-        min
-      ),
+      Math.max(value,min),
       max
     );
 
@@ -199,31 +199,47 @@ if (heroGauge) {
     rpm
   ) {
 
-    const normalized =
+    const percent =
       clamp(
-        rpm / maxRpm,
+        rpm / MAX_RPM,
         0,
         1
       );
 
 
     return (
-      startAngle +
-      normalized *
+      START_ANGLE +
       (
-        endAngle -
-        startAngle
-      )
+        END_ANGLE -
+        START_ANGLE
+      ) *
+      percent
     );
 
   }
 
 
-  function updateGauge(){
+  function setTargetRpm(
+    rpm
+  ) {
 
-    if (
-      !gaugeShell
-    ) {
+    targetRpm =
+      clamp(
+        rpm,
+        0,
+        MAX_RPM
+      );
+
+  }
+
+
+  // ==========================================================
+  // GAUGE DRAW
+  // ==========================================================
+
+  function drawGauge(){
+
+    if (!gaugeShell) {
       return;
     }
 
@@ -240,9 +256,7 @@ if (heroGauge) {
     );
 
 
-    if (
-      rpmDisplay
-    ) {
+    if (rpmDisplay) {
 
       rpmDisplay.textContent =
         Math.round(
@@ -257,21 +271,321 @@ if (heroGauge) {
     }
 
 
-    gaugeShell
-      .classList
-      .toggle(
-        'redline-active',
-        currentRpm >= 7000
-      );
+    const inRedline =
+      currentRpm >= 7000;
+
+
+    gaugeShell.classList.toggle(
+      'redline-active',
+      inRedline
+    );
 
   }
 
 
-  function animationLoop(
+  // ==========================================================
+  // STARTUP
+  // ==========================================================
+
+  function runStartup(){
+
+    setTargetRpm(0);
+
+
+    setTimeout(
+      () => {
+
+        setTargetRpm(
+          8800
+        );
+
+      },
+      350
+    );
+
+
+    setTimeout(
+      () => {
+
+        setTargetRpm(
+          2600
+        );
+
+      },
+      1450
+    );
+
+
+    setTimeout(
+      () => {
+
+        setTargetRpm(
+          7200
+        );
+
+      },
+      2050
+    );
+
+
+    setTimeout(
+      () => {
+
+        setTargetRpm(
+          1700
+        );
+
+      },
+      2850
+    );
+
+
+    setTimeout(
+      () => {
+
+        mode =
+          'idle';
+
+      },
+      3500
+    );
+
+  }
+
+
+  // ==========================================================
+  // ENGINE BEHAVIOUR
+  // ==========================================================
+
+  function updateEngineBehaviour(
     now
   ) {
 
-    const dt =
+    if (
+      mode ===
+      'startup'
+    ) {
+
+      return;
+
+    }
+
+
+    // --------------------------------------------------------
+    // IDLING
+    // --------------------------------------------------------
+
+    if (
+      mode ===
+      'idle'
+    ) {
+
+      /*
+        常に針が細かく揺れる。
+        完全静止させない。
+      */
+
+      const idleWave =
+        Math.sin(
+          now / 140
+        ) *
+        120;
+
+
+      const idleWave2 =
+        Math.sin(
+          now / 57
+        ) *
+        45;
+
+
+      const idleBase =
+        1550;
+
+
+      setTargetRpm(
+        idleBase +
+        idleWave +
+        idleWave2
+      );
+
+
+      /*
+        次の空ぶかし
+      */
+
+      if (
+        now >=
+        nextRevTime
+      ) {
+
+        const random =
+          Math.random();
+
+
+        if (
+          random >
+          0.70
+        ) {
+
+          // 大きくREDZONEまで回す
+
+          mode =
+            'redline';
+
+          setTargetRpm(
+            7900 +
+            Math.random() *
+            850
+          );
+
+
+          revEndTime =
+            now +
+            1000;
+
+        }
+
+        else {
+
+          // 普通の空ぶかし
+
+          mode =
+            'rev';
+
+          setTargetRpm(
+            4300 +
+            Math.random() *
+            1900
+          );
+
+
+          revEndTime =
+            now +
+            750;
+
+        }
+
+      }
+
+    }
+
+
+    // --------------------------------------------------------
+    // NORMAL REV
+    // --------------------------------------------------------
+
+    else if (
+      mode ===
+      'rev'
+    ) {
+
+      if (
+        now >=
+        revEndTime
+      ) {
+
+        mode =
+          'idle';
+
+
+        nextRevTime =
+          now +
+          3500 +
+          Math.random() *
+          3500;
+
+      }
+
+    }
+
+
+    // --------------------------------------------------------
+    // REDLINE REV
+    // --------------------------------------------------------
+
+    else if (
+      mode ===
+      'redline'
+    ) {
+
+      /*
+        REDZONE中も
+        針を微妙に震わせる
+      */
+
+      setTargetRpm(
+        8000 +
+        Math.sin(
+          now / 65
+        ) *
+        350
+      );
+
+
+      if (
+        now >=
+        revEndTime
+      ) {
+
+        mode =
+          'drop';
+
+
+        setTargetRpm(
+          3200
+        );
+
+
+        revEndTime =
+          now +
+          550;
+
+      }
+
+    }
+
+
+    // --------------------------------------------------------
+    // RPM DROP
+    // --------------------------------------------------------
+
+    else if (
+      mode ===
+      'drop'
+    ) {
+
+      if (
+        now >=
+        revEndTime
+      ) {
+
+        mode =
+          'idle';
+
+
+        nextRevTime =
+          now +
+          4000 +
+          Math.random() *
+          3500;
+
+      }
+
+    }
+
+  }
+
+
+  // ==========================================================
+  // ANIMATION LOOP
+  // ==========================================================
+
+  function animateGauge(
+    now
+  ) {
+
+    const delta =
       Math.min(
         (
           now -
@@ -286,19 +600,30 @@ if (heroGauge) {
       now;
 
 
-    const speed =
+    updateEngineBehaviour(
+      now
+    );
+
+
+    /*
+      回転が上がる時は速く、
+      落ちる時は少しゆっくり。
+    */
+
+    const responseSpeed =
       targetRpm >
       currentRpm
         ?
-        7
+        8.5
         :
-        4;
+        4.5;
 
 
     const smoothing =
       1 -
       Math.exp(
-        -speed * dt
+        -responseSpeed *
+        delta
       );
 
 
@@ -306,246 +631,114 @@ if (heroGauge) {
       (
         targetRpm -
         currentRpm
-      )
-      *
+      ) *
       smoothing;
 
 
-    updateGauge();
+    /*
+      エンジン振動っぽい
+      超微細なノイズ
+    */
+
+    if (
+      mode ===
+      'idle'
+    ) {
+
+      currentRpm +=
+        (
+          Math.random() -
+          0.5
+        ) *
+        18;
+
+    }
+
+
+    drawGauge();
 
 
     requestAnimationFrame(
-      animationLoop
+      animateGauge
     );
 
   }
 
 
-  function setTarget(
-    rpm
-  ) {
-
-    targetRpm =
-      clamp(
-        rpm,
-        minRpm,
-        maxRpm
-      );
-
-  }
-
-
-  // --------------------------------
-  // START-UP SEQUENCE
-  // --------------------------------
-
-  function startupSequence(){
-
-    setTarget(
-      0
-    );
-
-
-    setTimeout(
-      () => {
-
-        setTarget(
-          8600
-        );
-
-      },
-      300
-    );
-
-
-    setTimeout(
-      () => {
-
-        setTarget(
-          4200
-        );
-
-      },
-      1450
-    );
-
-
-    setTimeout(
-      () => {
-
-        setTarget(
-          6900
-        );
-
-      },
-      2200
-    );
-
-
-    setTimeout(
-      () => {
-
-        setTarget(
-          1350
-        );
-
-      },
-      2950
-    );
-
-
-    setTimeout(
-      () => {
-
-        startIdle();
-
-      },
-      3700
-    );
-
-  }
-
-
-  // --------------------------------
-  // IDLING
-  // --------------------------------
-
-  function startIdle(){
-
-    if (
-      idleTimer
-    ) {
-
-      clearInterval(
-        idleTimer
-      );
-
-    }
-
-
-    idleTimer =
-      setInterval(
-        () => {
-
-          const base =
-            1450;
-
-          const variance =
-            450 +
-            Math.random() *
-            850;
-
-
-          setTarget(
-            base +
-            variance
-          );
-
-        },
-        850
-      );
-
-
-    scheduleRedline();
-
-  }
-
-
-  // --------------------------------
-  // OCCASIONAL REV
-  // --------------------------------
-
-  function scheduleRedline(){
-
-    if (
-      redlineTimer
-    ) {
-
-      clearTimeout(
-        redlineTimer
-      );
-
-    }
-
-
-    const delay =
-      7000 +
-      Math.random() *
-      6000;
-
-
-    redlineTimer =
-      setTimeout(
-        () => {
-
-          if (
-            document.hidden
-          ) {
-
-            scheduleRedline();
-
-            return;
-
-          }
-
-
-          setTarget(
-            7600 +
-            Math.random() *
-            1150
-          );
-
-
-          setTimeout(
-            () => {
-
-              setTarget(
-                3000 +
-                Math.random() *
-                1600
-              );
-
-            },
-            700
-          );
-
-
-          setTimeout(
-            () => {
-
-              setTarget(
-                1500 +
-                Math.random() *
-                600
-              );
-
-            },
-            1450
-          );
-
-
-          scheduleRedline();
-
-        },
-        delay
-      );
-
-  }
-
-
-  // --------------------------------
-  // POINTER INTERACTION
-  // --------------------------------
+  // ==========================================================
+  // MOUSE HOVER
+  // ==========================================================
 
   heroGauge.addEventListener(
     'mouseenter',
     () => {
 
-      setTarget(
-        4200 +
-        Math.random() *
-        1500
-      );
+      if (
+        mode !==
+        'startup'
+      ) {
+
+        mode =
+          'manual';
+
+        setTargetRpm(
+          4800
+        );
+
+      }
+
+    }
+  );
+
+
+  heroGauge.addEventListener(
+    'mousemove',
+    e => {
+
+      if (
+        mode ===
+        'startup'
+      ) {
+
+        return;
+
+      }
+
+
+      const rect =
+        heroGauge
+          .getBoundingClientRect();
+
+
+      const position =
+        clamp(
+          (
+            e.clientX -
+            rect.left
+          ) /
+          rect.width,
+          0,
+          1
+        );
+
+
+      /*
+        左側 = 2000rpm
+        右側 = 7000rpm
+      */
+
+      if (
+        mode ===
+        'manual'
+      ) {
+
+        setTargetRpm(
+          2000 +
+          position *
+          5000
+        );
+
+      }
 
     }
   );
@@ -555,61 +748,87 @@ if (heroGauge) {
     'mouseleave',
     () => {
 
-      setTarget(
-        1600 +
-        Math.random() *
-        600
-      );
+      if (
+        mode !==
+        'startup'
+      ) {
+
+        mode =
+          'idle';
+
+
+        nextRevTime =
+          performance.now() +
+          4000;
+
+      }
 
     }
   );
 
+
+  // ==========================================================
+  // CLICK = FULL REV
+  // ==========================================================
 
   heroGauge.addEventListener(
     'click',
     () => {
 
-      setTarget(
-        8200 +
-        Math.random() *
-        500
+      if (
+        mode ===
+        'startup'
+      ) {
+
+        return;
+
+      }
+
+
+      mode =
+        'redline';
+
+
+      setTargetRpm(
+        8500
       );
 
 
-      setTimeout(
-        () => {
-
-          setTarget(
-            1800
-          );
-
-        },
-        900
-      );
+      revEndTime =
+        performance.now() +
+        1100;
 
     }
   );
 
 
+  // ==========================================================
+  // START
+  // ==========================================================
+
   requestAnimationFrame(
-    animationLoop
+    animateGauge
   );
 
 
-  startupSequence();
+  runStartup();
 
 }
 
 
-// ==============================
-// HERO PARALLAX MOTION
-// ==============================
+// ============================================================
+// HERO PARALLAX
+// ============================================================
 
 const hero =
-  document.querySelector('.hero');
+  document.querySelector(
+    '.hero'
+  );
 
 const visual =
-  document.querySelector('.hero-visual');
+  document.querySelector(
+    '.hero-visual'
+  );
 
 
 if (
@@ -625,7 +844,9 @@ if (
         window.innerWidth <
         1000
       ) {
+
         return;
+
       }
 
 
@@ -634,8 +855,7 @@ if (
           e.clientX /
           window.innerWidth -
           0.5
-        )
-        *
+        ) *
         12;
 
 
@@ -644,8 +864,7 @@ if (
           e.clientY /
           window.innerHeight -
           0.5
-        )
-        *
+        ) *
         9;
 
 
@@ -675,9 +894,9 @@ if (
 }
 
 
-// ==============================
+// ============================================================
 // PROJECT CAROUSEL
-// ==============================
+// ============================================================
 
 const carousel =
   document.getElementById(
@@ -725,7 +944,8 @@ if (carousel) {
   if (
     viewport &&
     track &&
-    slides.length > 0
+    slides.length >
+    0
   ) {
 
     let index = 0;
@@ -802,7 +1022,8 @@ if (carousel) {
         }
 
 
-        timer = null;
+        timer =
+          null;
 
       };
 
@@ -918,9 +1139,12 @@ if (carousel) {
       e => {
 
         if (
-          startX === null
+          startX ===
+          null
         ) {
+
           return;
+
         }
 
 
@@ -949,7 +1173,8 @@ if (carousel) {
         }
 
 
-        startX = null;
+        startX =
+          null;
 
 
         start();
@@ -962,7 +1187,8 @@ if (carousel) {
       'pointercancel',
       () => {
 
-        startX = null;
+        startX =
+          null;
 
         start();
 
@@ -1042,9 +1268,9 @@ if (carousel) {
 }
 
 
-// ==============================
+// ============================================================
 // CREATOR / MAR MOTION
-// ==============================
+// ============================================================
 
 const creatorMotion =
   document.getElementById(
