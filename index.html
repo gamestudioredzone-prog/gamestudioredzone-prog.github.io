@@ -1965,15 +1965,337 @@
       </div>
 
 
-      <div class="hero-visual">
+      <div class="hero-visual" id="rzTachometer" aria-label="REDZONE tachometer">
 
-        <div class="hero-ring one"></div>
-        <div class="hero-ring two"></div>
-        <div class="hero-ring three"></div>
+        <style>
+          #rzTachometer{
+            position:relative;
+            width:min(560px,46vw);
+            aspect-ratio:1;
+            display:grid;
+            place-items:center;
+            isolation:isolate;
+            cursor:pointer;
+            transition:transform .18s ease-out;
+          }
 
-        <div class="core-logo">
-          R<span>Z</span>
+          #rzTachometer .rz-gauge{
+            position:absolute;
+            inset:3%;
+            border-radius:50%;
+            background:
+              radial-gradient(circle at center,
+                rgba(255,30,45,.10) 0 8%,
+                rgba(5,5,6,.98) 9% 48%,
+                rgba(15,5,7,.96) 49% 58%,
+                rgba(3,3,4,.98) 59% 100%);
+            box-shadow:
+              0 0 0 1px rgba(255,255,255,.08),
+              0 0 0 2px rgba(255,31,45,.16),
+              0 0 45px rgba(255,31,45,.13),
+              inset 0 0 80px rgba(255,31,45,.09);
+          }
+
+          #rzTachometer .rz-gauge::before{
+            content:"";
+            position:absolute;
+            inset:4%;
+            border-radius:50%;
+            background:
+              repeating-conic-gradient(
+                from -132deg,
+                rgba(255,255,255,.82) 0deg 1deg,
+                transparent 1deg 8deg
+              );
+            -webkit-mask:
+              radial-gradient(circle,transparent 0 71%,#000 72% 75%,transparent 76%);
+            mask:
+              radial-gradient(circle,transparent 0 71%,#000 72% 75%,transparent 76%);
+            opacity:.65;
+          }
+
+          #rzTachometer .rz-gauge::after{
+            content:"";
+            position:absolute;
+            inset:-1%;
+            border-radius:50%;
+            border:1px solid rgba(255,31,45,.42);
+            box-shadow:
+              0 0 20px rgba(255,31,45,.18),
+              inset 0 0 18px rgba(255,31,45,.08);
+            animation:rzGaugePulse 2.2s ease-in-out infinite;
+          }
+
+          #rzTachometer .rz-redzone-arc{
+            position:absolute;
+            inset:7%;
+            border-radius:50%;
+            background:
+              conic-gradient(
+                from 0deg,
+                transparent 0 64%,
+                rgba(255,31,45,.10) 64% 67%,
+                #ff1f2d 67% 78%,
+                transparent 78% 100%
+              );
+            -webkit-mask:
+              radial-gradient(circle,transparent 0 78%,#000 79% 83%,transparent 84%);
+            mask:
+              radial-gradient(circle,transparent 0 78%,#000 79% 83%,transparent 84%);
+            filter:drop-shadow(0 0 9px rgba(255,31,45,.75));
+            opacity:.85;
+          }
+
+          #rzTachometer .rz-sweep{
+            position:absolute;
+            inset:10%;
+            border-radius:50%;
+            border:1px dashed rgba(255,255,255,.09);
+            animation:rzSweep 16s linear infinite;
+          }
+
+          #rzTachometer .rz-center-copy{
+            position:absolute;
+            inset:0;
+            display:flex;
+            flex-direction:column;
+            align-items:center;
+            justify-content:center;
+            transform:translateY(6%);
+            pointer-events:none;
+          }
+
+          #rzTachometer .rz-logo{
+            font-family:"Barlow Condensed",sans-serif;
+            font-size:clamp(72px,8vw,128px);
+            font-weight:900;
+            font-style:italic;
+            letter-spacing:-.08em;
+            color:#f6f6f6;
+            line-height:.8;
+            text-shadow:0 0 22px rgba(255,255,255,.06);
+          }
+
+          #rzTachometer .rz-logo span{
+            color:#ff1f2d;
+            text-shadow:0 0 25px rgba(255,31,45,.32);
+          }
+
+          #rzTachometer .rz-rpm{
+            margin-top:20px;
+            font-family:"Barlow Condensed",sans-serif;
+            font-size:clamp(16px,1.5vw,24px);
+            font-weight:700;
+            letter-spacing:.22em;
+            color:rgba(255,255,255,.72);
+          }
+
+          #rzTachometer .rz-rpm strong{
+            color:#fff;
+            font-size:1.25em;
+          }
+
+          #rzTachometer .rz-caption{
+            margin-top:5px;
+            font-family:"Barlow Condensed",sans-serif;
+            font-size:11px;
+            letter-spacing:.42em;
+            color:#ff2432;
+          }
+
+          #rzTachometer .rz-needle-wrap{
+            position:absolute;
+            left:50%;
+            top:50%;
+            width:0;
+            height:0;
+            transform:rotate(-118deg);
+            transition:transform .12s cubic-bezier(.2,.8,.2,1);
+            z-index:4;
+          }
+
+          #rzTachometer .rz-needle{
+            position:absolute;
+            width:clamp(125px,15vw,215px);
+            height:4px;
+            right:-14px;
+            top:-2px;
+            background:
+              linear-gradient(90deg,
+                rgba(255,31,45,0),
+                #ff5964 12%,
+                #ff1f2d 58%,
+                #fff 100%);
+            clip-path:polygon(0 42%,100% 0,100% 100%,0 58%);
+            filter:
+              drop-shadow(0 0 5px #ff1f2d)
+              drop-shadow(0 0 12px rgba(255,31,45,.8));
+          }
+
+          #rzTachometer .rz-hub{
+            position:absolute;
+            left:50%;
+            top:50%;
+            width:34px;
+            height:34px;
+            border-radius:50%;
+            transform:translate(-50%,-50%);
+            background:
+              radial-gradient(circle at 40% 35%,#fff 0 4%,#ff3644 6% 18%,#31080c 20% 58%,#09090a 60%);
+            border:1px solid rgba(255,255,255,.2);
+            box-shadow:
+              0 0 18px rgba(255,31,45,.8),
+              0 0 45px rgba(255,31,45,.22);
+            z-index:5;
+          }
+
+          #rzTachometer.redlining .rz-gauge{
+            box-shadow:
+              0 0 0 1px rgba(255,255,255,.12),
+              0 0 0 2px rgba(255,31,45,.35),
+              0 0 70px rgba(255,31,45,.40),
+              inset 0 0 100px rgba(255,31,45,.16);
+          }
+
+          #rzTachometer.redlining .rz-redzone-arc{
+            filter:
+              drop-shadow(0 0 11px #ff1f2d)
+              drop-shadow(0 0 28px rgba(255,31,45,.9));
+            opacity:1;
+          }
+
+          #rzTachometer.redlining .rz-logo span{
+            text-shadow:
+              0 0 10px #ff1f2d,
+              0 0 38px rgba(255,31,45,.9);
+          }
+
+          @keyframes rzSweep{
+            to{transform:rotate(360deg)}
+          }
+
+          @keyframes rzGaugePulse{
+            0%,100%{opacity:.35}
+            50%{opacity:.9}
+          }
+
+          @media (max-width:1000px){
+            #rzTachometer{
+              width:min(82vw,520px);
+            }
+          }
+
+          @media (prefers-reduced-motion:reduce){
+            #rzTachometer .rz-sweep,
+            #rzTachometer .rz-gauge::after{
+              animation:none;
+            }
+          }
+        </style>
+
+        <div class="rz-gauge"></div>
+        <div class="rz-redzone-arc"></div>
+        <div class="rz-sweep"></div>
+
+        <div class="rz-needle-wrap" id="rzNeedle">
+          <div class="rz-needle"></div>
         </div>
+
+        <div class="rz-hub"></div>
+
+        <div class="rz-center-copy">
+          <div class="rz-logo">R<span>Z</span></div>
+          <div class="rz-rpm"><strong id="rzRpmValue">1100</strong> RPM</div>
+          <div class="rz-caption">REDZONE / ACTIVE</div>
+        </div>
+
+        <script>
+          (() => {
+            const gauge = document.getElementById("rzTachometer");
+            const needle = document.getElementById("rzNeedle");
+            const rpmText = document.getElementById("rzRpmValue");
+
+            if (!gauge || !needle || !rpmText) return;
+
+            const MIN_ANGLE = -118;
+            const MAX_ANGLE = 122;
+            let rpm = 1100;
+            let target = 1100;
+            let timer = null;
+
+            const clamp = (n,min,max) => Math.max(min,Math.min(max,n));
+            const angleFor = value =>
+              MIN_ANGLE + (clamp(value,0,8000) / 8000) * (MAX_ANGLE - MIN_ANGLE);
+
+            const setTarget = value => {
+              target = clamp(value,650,8000);
+            };
+
+            function animate(){
+              const wobble =
+                target < 1800
+                  ? Math.sin(performance.now() / 180) * 70
+                  : Math.sin(performance.now() / 90) * 25;
+
+              rpm += (target + wobble - rpm) * 0.075;
+
+              needle.style.transform = `rotate(${angleFor(rpm)}deg)`;
+              rpmText.textContent = Math.round(rpm / 10) * 10;
+
+              gauge.classList.toggle("redlining", rpm >= 6500);
+
+              requestAnimationFrame(animate);
+            }
+
+            function drive(){
+              if (timer) clearTimeout(timer);
+
+              const seq = [
+                [1250,700],
+                [2700,850],
+                [4700,900],
+                [6900,650],
+                [7600,500],
+                [4200,850],
+                [1500,1000]
+              ];
+
+              let i = 0;
+
+              const step = () => {
+                const [value,wait] = seq[i];
+                setTarget(value);
+                i++;
+
+                if (i < seq.length){
+                  timer = setTimeout(step,wait);
+                }else{
+                  timer = setTimeout(drive,2600);
+                }
+              };
+
+              step();
+            }
+
+            gauge.addEventListener("click", () => {
+              if (timer) clearTimeout(timer);
+
+              setTarget(7900);
+
+              timer = setTimeout(() => {
+                setTarget(5200);
+
+                timer = setTimeout(() => {
+                  setTarget(1250);
+                  timer = setTimeout(drive,1400);
+                },700);
+              },650);
+            });
+
+            animate();
+            setTimeout(drive,900);
+          })();
+        </script>
 
       </div>
 
