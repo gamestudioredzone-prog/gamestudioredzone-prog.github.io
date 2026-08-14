@@ -83,19 +83,11 @@
       font:inherit;
     }
 
-
-    /* =========================================================
-       NOISE
-       ========================================================= */
-
     .noise{
       position:fixed;
       inset:0;
-
       z-index:1000;
-
       pointer-events:none;
-
       opacity:.035;
 
       background-image:
@@ -103,13 +95,10 @@
     }
 
 
-    /* =========================================================
-       HEADER
-       ========================================================= */
+    /* HEADER */
 
     .site-header{
       position:fixed;
-
       top:0;
       left:0;
       right:0;
@@ -122,17 +111,13 @@
       align-items:center;
       justify-content:space-between;
 
-      padding:
-        0 clamp(22px,4vw,68px);
+      padding:0 clamp(22px,4vw,68px);
 
-      background:
-        rgba(4,4,5,.88);
+      background:rgba(4,4,5,.88);
 
-      border-bottom:
-        1px solid rgba(255,255,255,.07);
+      border-bottom:1px solid rgba(255,255,255,.07);
 
-      backdrop-filter:
-        blur(18px);
+      backdrop-filter:blur(18px);
     }
 
     .brand{
@@ -175,7 +160,6 @@
     .brand-copy{
       display:flex;
       flex-direction:column;
-
       line-height:1;
     }
 
@@ -207,8 +191,7 @@
     .nav a{
       position:relative;
 
-      padding:
-        32px 0 27px;
+      padding:32px 0 27px;
 
       color:#bbb;
 
@@ -226,13 +209,11 @@
 
       left:0;
       right:100%;
-
       bottom:20px;
 
       height:2px;
 
-      background:
-        var(--red);
+      background:var(--red);
 
       transition:.25s;
     }
@@ -247,11 +228,8 @@
 
     .menu-toggle{
       display:none;
-
       border:0;
-
       background:none;
-
       cursor:pointer;
     }
 
@@ -267,9 +245,7 @@
     }
 
 
-    /* =========================================================
-       HERO
-       ========================================================= */
+    /* HERO */
 
     .hero{
       position:relative;
@@ -331,8 +307,7 @@
           transparent 1px
         );
 
-      background-size:
-        48px 48px;
+      background-size:48px 48px;
 
       transform:
         perspective(700px)
@@ -346,11 +321,9 @@
     }
 
     .eyebrow{
-      margin:
-        0 0 18px;
+      margin:0 0 18px;
 
-      color:
-        var(--red);
+      color:var(--red);
 
       font:
         700 13px
@@ -362,11 +335,8 @@
     .hero h1{
       margin:0;
 
-      font-family:
-        "Barlow Condensed";
-
+      font-family:"Barlow Condensed";
       font-weight:900;
-
       line-height:.82;
     }
 
@@ -380,8 +350,7 @@
     .hero h1 strong{
       display:block;
 
-      color:
-        var(--red);
+      color:var(--red);
 
       font-size:
         clamp(96px,13vw,205px);
@@ -394,8 +363,7 @@
     }
 
     .hero-ja{
-      margin:
-        22px 0 14px;
+      margin:22px 0 14px;
 
       font-size:
         clamp(26px,2.7vw,44px);
@@ -405,40 +373,31 @@
 
     .hero-lead{
       color:#b9b9bf;
-
       line-height:1.9;
     }
 
     .hero-actions,
     .contact-actions{
       display:flex;
-
       gap:14px;
-
       flex-wrap:wrap;
-
       margin-top:34px;
     }
 
 
-    /* =========================================================
-       BUTTON
-       ========================================================= */
+    /* BUTTON */
 
     .btn{
       min-width:190px;
       height:54px;
 
-      padding:
-        0 22px;
+      padding:0 22px;
 
       display:inline-flex;
       align-items:center;
       justify-content:space-between;
 
-      border:
-        1px solid
-        var(--line);
+      border:1px solid var(--line);
 
       font:
         700 13px
@@ -457,13 +416,11 @@
           var(--red)
         );
 
-      border-color:
-        transparent;
+      border-color:transparent;
     }
 
     .btn-primary:hover{
-      transform:
-        translateY(-2px);
+      transform:translateY(-2px);
 
       box-shadow:
         0 8px 35px
@@ -471,8 +428,7 @@
     }
 
     .btn-ghost{
-      background:
-        rgba(255,255,255,.02);
+      background:rgba(255,255,255,.02);
     }
 
     .btn-ghost:hover{
@@ -481,18 +437,13 @@
     }
 
 
-    /* =========================================================
-       HERO LOGO
-       ========================================================= */
+    /* HERO LOGO */
 
     .hero-visual{
       position:relative;
-
       z-index:5;
 
-      width:
-        min(45vw,650px);
-
+      width:min(45vw,650px);
       aspect-ratio:1;
 
       justify-self:end;
@@ -545,37 +496,29 @@
 
       letter-spacing:-.11em;
 
-      transform:
-        skewX(-7deg);
+      transform:skewX(-7deg);
     }
 
     .core-logo span{
-      color:
-        var(--red);
+      color:var(--red);
     }
 
     @keyframes spin{
       to{
-        transform:
-          rotate(360deg);
+        transform:rotate(360deg);
       }
     }
 
 
-    /* =========================================================
-       TICKER
-       ========================================================= */
+    /* TICKER */
 
     .ticker{
       height:74px;
 
       overflow:hidden;
 
-      border-top:
-        1px solid var(--line);
-
-      border-bottom:
-        1px solid var(--line);
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
 
       background:#080809;
     }
@@ -605,27 +548,21 @@
     }
 
     .ticker i{
-      color:
-        var(--red);
-
+      color:var(--red);
       font-style:normal;
     }
 
     @keyframes ticker{
       to{
-        transform:
-          translateX(-50%);
+        transform:translateX(-50%);
       }
     }
 
 
-    /* =========================================================
-       GENERAL
-       ========================================================= */
+    /* GENERAL */
 
     .section{
-      max-width:
-        var(--max);
+      max-width:var(--max);
 
       margin:auto;
 
@@ -649,14 +586,11 @@
 
     .section-head>p:last-child{
       color:#aaaab1;
-
       line-height:2;
     }
 
 
-    /* =========================================================
-       ABOUT
-       ========================================================= */
+    /* ABOUT */
 
     .principles{
       margin-top:70px;
@@ -668,8 +602,7 @@
 
       gap:1px;
 
-      background:
-        var(--line);
+      background:var(--line);
     }
 
     .principle{
@@ -681,13 +614,11 @@
     }
 
     .principle>span{
-      color:
-        var(--red);
+      color:var(--red);
     }
 
     .principle h3{
-      margin:
-        54px 0 10px;
+      margin:54px 0 10px;
 
       font:
         800 32px
@@ -703,9 +634,7 @@
     }
 
 
-    /* =========================================================
-       PROJECTS
-       ========================================================= */
+    /* PROJECTS */
 
     .section-title-row{
       margin-bottom:58px;
@@ -728,9 +657,7 @@
     }
 
     .project-card{
-      border:
-        1px solid
-        var(--line);
+      border:1px solid var(--line);
 
       background:
         linear-gradient(
@@ -765,8 +692,7 @@
     }
 
     .project-copy h3{
-      margin:
-        20px 0;
+      margin:20px 0;
 
       font:
         900
@@ -776,28 +702,21 @@
 
     .project-copy>p:not(.project-index){
       color:#a3a3aa;
-
       line-height:1.9;
     }
 
     .project-tags{
-      margin:
-        28px 0;
+      margin:28px 0;
 
       display:flex;
-
       gap:8px;
-
       flex-wrap:wrap;
     }
 
     .project-tags span{
-      padding:
-        8px 12px;
+      padding:8px 12px;
 
-      border:
-        1px solid
-        var(--line);
+      border:1px solid var(--line);
 
       font:
         600 10px
@@ -808,14 +727,11 @@
 
     .text-link{
       display:inline-flex;
-
       gap:24px;
 
       padding-bottom:8px;
 
-      border-bottom:
-        1px solid
-        var(--red);
+      border-bottom:1px solid var(--red);
 
       font:
         700 13px
@@ -825,20 +741,15 @@
     }
 
 
-    /* =========================================================
-       CAROUSEL
-       ========================================================= */
+    /* CAROUSEL */
 
     .project-visual-real{
       min-height:650px;
 
-      padding:
-        32px 24px;
+      padding:32px 24px;
 
       display:flex;
-
       align-items:center;
-
       justify-content:center;
 
       background:
@@ -874,8 +785,7 @@
 
       overflow:hidden;
 
-      touch-action:
-        pan-y;
+      touch-action:pan-y;
     }
 
     .carousel-track{
@@ -890,17 +800,14 @@
     }
 
     .carousel-slide{
-      flex:
-        0 0 100%;
+      flex:0 0 100%;
 
       min-width:100%;
 
       height:100%;
 
       display:flex;
-
       justify-content:center;
-
       align-items:center;
     }
 
@@ -955,8 +862,7 @@
       width:48px;
       height:48px;
 
-      transform:
-        translateY(-50%);
+      transform:translateY(-50%);
 
       border:
         1px solid
@@ -964,8 +870,7 @@
 
       border-radius:50%;
 
-      background:
-        rgba(5,5,7,.82);
+      background:rgba(5,5,7,.82);
 
       color:#fff;
 
@@ -983,8 +888,7 @@
     }
 
     .carousel-arrow:hover{
-      background:
-        var(--red);
+      background:var(--red);
     }
 
     .carousel-dots{
@@ -995,8 +899,7 @@
       left:50%;
       bottom:18px;
 
-      transform:
-        translateX(-50%);
+      transform:translateX(-50%);
 
       display:flex;
 
@@ -1028,11 +931,9 @@
 
       border-radius:20px;
 
-      background:
-        var(--red);
+      background:var(--red);
 
-      border-color:
-        var(--red);
+      border-color:var(--red);
     }
 
     .project-shot-label{
@@ -1043,11 +944,9 @@
 
       z-index:42;
 
-      padding:
-        7px 10px;
+      padding:7px 10px;
 
-      background:
-        rgba(4,4,5,.88);
+      background:rgba(4,4,5,.88);
 
       border:
         1px solid
@@ -1061,9 +960,7 @@
     }
 
 
-    /* =========================================================
-       OTHER PROJECTS
-       ========================================================= */
+    /* OTHER PROJECTS */
 
     .project-grid{
       margin-top:20px;
@@ -1093,13 +990,11 @@
         900 90px/.82
         "Barlow Condensed";
 
-      margin:
-        30px 0;
+      margin:30px 0;
     }
 
     .classified{
-      color:
-        var(--red);
+      color:var(--red);
     }
 
     .plus{
@@ -1117,9 +1012,7 @@
     }
 
 
-    /* =========================================================
-       CREATOR
-       ========================================================= */
+    /* CREATOR */
 
     .creator{
       padding:
@@ -1169,7 +1062,6 @@
 
     .creator-copy{
       position:relative;
-
       z-index:10;
     }
 
@@ -1190,8 +1082,7 @@
 
       margin-top:16px;
 
-      color:
-        var(--red);
+      color:var(--red);
 
       font-size:.32em;
 
@@ -1215,13 +1106,11 @@
 
       z-index:5;
 
-      width:
-        min(100%,470px);
+      width:min(100%,470px);
 
       aspect-ratio:1;
 
       display:grid;
-
       place-items:center;
 
       justify-self:center;
@@ -1264,13 +1153,11 @@
     @keyframes creatorFloat{
       0%,
       100%{
-        transform:
-          translateY(0);
+        transform:translateY(0);
       }
 
       50%{
-        transform:
-          translateY(-8px);
+        transform:translateY(-8px);
       }
     }
 
@@ -1313,23 +1200,14 @@
 
         conic-gradient(
           from 0deg,
-
           transparent 0 22deg,
-
           #fff 22deg 48deg,
-
           #ff1f2d 48deg 103deg,
-
           transparent 103deg 145deg,
-
           #ff1f2d 145deg 207deg,
-
           #fff 207deg 229deg,
-
           transparent 229deg 287deg,
-
           #ff1f2d 287deg 351deg,
-
           transparent 351deg 360deg
         )
         border-box;
@@ -1425,16 +1303,14 @@
       top:10%;
       left:7%;
 
-      transform:
-        rotate(-36deg);
+      transform:rotate(-36deg);
     }
 
     .stream-bottom{
       right:6%;
       bottom:9%;
 
-      transform:
-        rotate(-36deg);
+      transform:rotate(-36deg);
     }
 
     .creator-live-dot{
@@ -1447,8 +1323,7 @@
 
       border-radius:50%;
 
-      background:
-        var(--red);
+      background:var(--red);
 
       box-shadow:
         0 0 17px
@@ -1476,9 +1351,7 @@
     @keyframes dotBlink{
       to{
         opacity:.2;
-
-        transform:
-          scale(.55);
+        transform:scale(.55);
       }
     }
 
@@ -1519,21 +1392,16 @@
     }
 
 
-    /* =========================================================
-       NEWS
-       ========================================================= */
+    /* NEWS */
 
     .news-list{
       margin-top:45px;
 
-      border-top:
-        1px solid
-        var(--line);
+      border-top:1px solid var(--line);
     }
 
     .news-item{
-      padding:
-        28px 8px;
+      padding:28px 8px;
 
       display:grid;
 
@@ -1544,40 +1412,31 @@
 
       align-items:center;
 
-      border-bottom:
-        1px solid
-        var(--line);
+      border-bottom:1px solid var(--line);
     }
 
     .news-tag{
-      color:
-        var(--red);
+      color:var(--red);
     }
 
 
-    /* =========================================================
-       CONTACT
-       ========================================================= */
+    /* CONTACT */
 
     .contact{
       min-height:580px;
 
       display:grid;
-
       place-items:center;
 
       text-align:center;
 
-      border-top:
-        1px solid
-        var(--line);
+      border-top:1px solid var(--line);
 
       background:#080809;
     }
 
     .contact-inner{
-      padding:
-        90px 22px;
+      padding:90px 22px;
     }
 
     .contact h2{
@@ -1590,8 +1449,7 @@
     }
 
     .contact h2 span{
-      color:
-        var(--red);
+      color:var(--red);
     }
 
     .contact-actions{
@@ -1599,13 +1457,10 @@
     }
 
 
-    /* =========================================================
-       INFORMATION
-       ========================================================= */
+    /* INFORMATION */
 
     .information{
-      max-width:
-        var(--max);
+      max-width:var(--max);
 
       margin:auto;
 
@@ -1638,9 +1493,7 @@
     }
 
     .legal-card{
-      border:
-        1px solid
-        var(--line);
+      border:1px solid var(--line);
 
       background:
         linear-gradient(
@@ -1691,15 +1544,11 @@
       right:25px;
       top:50%;
 
-      transform:
-        translateY(-50%);
+      transform:translateY(-50%);
 
-      color:
-        var(--red);
+      color:var(--red);
 
       font-size:30px;
-
-      font-weight:400;
     }
 
     .legal-card[open] summary::after{
@@ -1724,9 +1573,7 @@
       padding:
         5px 28px 32px;
 
-      border-top:
-        1px solid
-        var(--line);
+      border-top:1px solid var(--line);
 
       color:#aaaab1;
 
@@ -1736,21 +1583,11 @@
     }
 
     .legal-body h3{
-      margin:
-        25px 0 5px;
+      margin:25px 0 5px;
 
       color:#fff;
 
       font-size:14px;
-    }
-
-    .legal-link{
-      color:
-        var(--red);
-
-      border-bottom:
-        1px solid
-        rgba(255,31,45,.4);
     }
 
     .legal-form-button{
@@ -1758,23 +1595,24 @@
 
       width:100%;
 
-      min-height:50px;
+      min-height:54px;
 
-      padding:
-        0 18px;
+      padding:0 18px;
 
       display:flex;
-
       align-items:center;
-
       justify-content:space-between;
 
       border:
         1px solid
-        rgba(255,31,45,.45);
+        rgba(255,31,45,.50);
 
       background:
-        rgba(255,31,45,.08);
+        linear-gradient(
+          90deg,
+          rgba(185,0,22,.30),
+          rgba(255,31,45,.12)
+        );
 
       color:#fff;
 
@@ -1788,16 +1626,22 @@
     }
 
     .legal-form-button:hover{
-      background:
-        var(--red);
+      background:var(--red);
+      border-color:var(--red);
+    }
 
-      border-color:
-        var(--red);
+    .contact-note{
+      margin-top:24px;
+
+      color:#7f7f86;
+
+      font-size:12px;
+
+      line-height:1.9;
     }
 
     .site-bottom{
-      max-width:
-        var(--max);
+      max-width:var(--max);
 
       margin:auto;
 
@@ -1812,9 +1656,7 @@
 
       gap:25px;
 
-      border-top:
-        1px solid
-        var(--line);
+      border-top:1px solid var(--line);
 
       color:#666;
 
@@ -1826,9 +1668,7 @@
     }
 
 
-    /* =========================================================
-       RESPONSIVE
-       ========================================================= */
+    /* RESPONSIVE */
 
     @media(max-width:1000px){
 
@@ -1849,15 +1689,13 @@
 
         background:#080809;
 
-        transform:
-          translateY(-150%);
+        transform:translateY(-150%);
 
         transition:.3s;
       }
 
       .nav.open{
-        transform:
-          translateY(0);
+        transform:translateY(0);
       }
 
       .hero{
@@ -1891,7 +1729,6 @@
       .information-grid{
         grid-template-columns:1fr;
       }
-
     }
 
 
@@ -1921,7 +1758,6 @@
 
       .section-title-row{
         flex-direction:column;
-
         align-items:flex-start;
       }
 
@@ -2008,7 +1844,6 @@
 
         gap:8px;
       }
-
     }
 
   </style>
@@ -2020,9 +1855,7 @@
   <div class="noise"></div>
 
 
-  <!-- =====================================================
-       HEADER
-       ===================================================== -->
+  <!-- HEADER -->
 
   <header
     class="site-header"
@@ -2072,13 +1905,10 @@
   </header>
 
 
-
   <main>
 
 
-    <!-- =====================================================
-         HERO
-         ===================================================== -->
+    <!-- HERO -->
 
     <section class="hero">
 
@@ -2136,13 +1966,10 @@
       </div>
 
 
-
       <div class="hero-visual">
 
         <div class="hero-ring one"></div>
-
         <div class="hero-ring two"></div>
-
         <div class="hero-ring three"></div>
 
         <div class="core-logo">
@@ -2154,10 +1981,7 @@
     </section>
 
 
-
-    <!-- =====================================================
-         TICKER
-         ===================================================== -->
+    <!-- TICKER -->
 
     <section class="ticker">
 
@@ -2180,10 +2004,7 @@
     </section>
 
 
-
-    <!-- =====================================================
-         ABOUT
-         ===================================================== -->
+    <!-- ABOUT -->
 
     <section
       class="section"
@@ -2267,10 +2088,7 @@
     </section>
 
 
-
-    <!-- =====================================================
-         PROJECTS
-         ===================================================== -->
+    <!-- PROJECTS -->
 
     <section
       class="section"
@@ -2297,9 +2115,6 @@
 
       </div>
 
-
-
-      <!-- LIFE BASE -->
 
       <article class="project-card lifebase">
 
@@ -2452,12 +2267,10 @@
 
 
           <div class="project-tags">
-
             <span>SCHEDULE</span>
             <span>WORK</span>
             <span>FINANCE</span>
             <span>LIFE</span>
-
           </div>
 
 
@@ -2474,11 +2287,7 @@
       </article>
 
 
-
-      <!-- NEXT PROJECTS -->
-
       <div class="project-grid">
-
 
         <article class="project-card coming">
 
@@ -2525,16 +2334,12 @@
 
         </article>
 
-
       </div>
 
     </section>
 
 
-
-    <!-- =====================================================
-         CREATOR
-         ===================================================== -->
+    <!-- CREATOR -->
 
     <section
       class="creator"
@@ -2580,9 +2385,7 @@
         <div class="creator-visual">
 
           <div class="creator-ring creator-ring-outer"></div>
-
           <div class="creator-ring creator-ring-main"></div>
-
           <div class="creator-ring creator-ring-inner"></div>
 
 
@@ -2607,9 +2410,7 @@
 
 
           <span class="creator-live-dot live-dot-1"></span>
-
           <span class="creator-live-dot live-dot-2"></span>
-
           <span class="creator-live-dot live-dot-3"></span>
 
         </div>
@@ -2635,10 +2436,7 @@
     </section>
 
 
-
-    <!-- =====================================================
-         NEWS
-         ===================================================== -->
+    <!-- NEWS -->
 
     <section
       class="section"
@@ -2698,10 +2496,7 @@
     </section>
 
 
-
-    <!-- =====================================================
-         CONTACT
-         ===================================================== -->
+    <!-- CONTACT -->
 
     <section
       class="contact"
@@ -2753,10 +2548,7 @@
     </section>
 
 
-
-    <!-- =====================================================
-         INFORMATION
-         ===================================================== -->
+    <!-- INFORMATION -->
 
     <section
       class="information"
@@ -2896,7 +2688,6 @@
         </details>
 
 
-
         <!-- TERMS -->
 
         <details class="legal-card">
@@ -2963,7 +2754,6 @@
         </details>
 
 
-
         <!-- CONTACT -->
 
         <details class="legal-card">
@@ -2994,26 +2784,12 @@
               target="_blank"
               rel="noopener noreferrer"
             >
-              GOOGLE CONTACT FORM
+              CONTACT FORM
               <span>↗</span>
             </a>
 
 
-            <h3>
-              E-MAIL
-            </h3>
-
-            <p>
-              <a
-                class="legal-link"
-                href="mailto:gamestudioredzone@gmail.com"
-              >
-                gamestudioredzone@gmail.com
-              </a>
-            </p>
-
-
-            <p>
+            <p class="contact-note">
               お問い合わせ内容によっては、
               回答までお時間をいただく場合、
               または回答できない場合があります。
@@ -3032,10 +2808,7 @@
   </main>
 
 
-
-  <!-- =====================================================
-       SIMPLE BOTTOM
-       ===================================================== -->
+  <!-- SIMPLE BOTTOM -->
 
   <div class="site-bottom">
 
@@ -3051,12 +2824,9 @@
   </div>
 
 
-
   <script>
 
-    /* =========================================================
-       MENU
-       ========================================================= */
+    /* MENU */
 
     const nav =
       document.getElementById("nav");
@@ -3106,10 +2876,7 @@
     }
 
 
-
-    /* =========================================================
-       YEAR
-       ========================================================= */
+    /* YEAR */
 
     document
       .querySelectorAll(".current-year")
@@ -3121,10 +2888,7 @@
       });
 
 
-
-    /* =========================================================
-       LIFE BASE CAROUSEL
-       ========================================================= */
+    /* CAROUSEL */
 
     const carousel =
       document.getElementById(
@@ -3176,7 +2940,6 @@
       let timer = null;
 
 
-
       function showSlide(newIndex){
 
         if(
@@ -3214,7 +2977,6 @@
       }
 
 
-
       function nextSlide(){
 
         showSlide(
@@ -3224,7 +2986,6 @@
       }
 
 
-
       function prevSlide(){
 
         showSlide(
@@ -3232,7 +2993,6 @@
         );
 
       }
-
 
 
       function stopAuto(){
@@ -3248,7 +3008,6 @@
       }
 
 
-
       function startAuto(){
 
         stopAuto();
@@ -3261,7 +3020,6 @@
           );
 
       }
-
 
 
       if(prev){
@@ -3280,7 +3038,6 @@
       }
 
 
-
       if(next){
 
         next.addEventListener(
@@ -3295,7 +3052,6 @@
         );
 
       }
-
 
 
       dots.forEach(
@@ -3316,7 +3072,6 @@
 
         }
       );
-
 
 
       if(viewport){
@@ -3341,7 +3096,6 @@
 
           }
         );
-
 
 
         viewport.addEventListener(
@@ -3390,7 +3144,6 @@
         );
 
 
-
         viewport.addEventListener(
           "pointercancel",
           () => {
@@ -3403,7 +3156,6 @@
         );
 
       }
-
 
 
       document.addEventListener(
@@ -3435,7 +3187,6 @@
     }
 
   </script>
-
 
 </body>
 
