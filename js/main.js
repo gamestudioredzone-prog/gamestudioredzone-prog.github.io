@@ -47,11 +47,9 @@ const observer = new IntersectionObserver(
   }
 );
 
-document
-  .querySelectorAll('.reveal')
-  .forEach(el => {
-    observer.observe(el);
-  });
+document.querySelectorAll('.reveal').forEach(el => {
+  observer.observe(el);
+});
 
 
 // ==============================
@@ -59,18 +57,11 @@ document
 // ==============================
 
 if (glow) {
-  window.addEventListener(
-    'mousemove',
-    (e) => {
-      glow.style.left =
-        e.clientX + 'px';
-
-      glow.style.top =
-        e.clientY + 'px';
-
-      glow.style.opacity = '1';
-    }
-  );
+  window.addEventListener('mousemove', (e) => {
+    glow.style.left = e.clientX + 'px';
+    glow.style.top = e.clientY + 'px';
+    glow.style.opacity = '1';
+  });
 }
 
 
@@ -78,12 +69,10 @@ if (glow) {
 // YEAR
 // ==============================
 
-const year =
-  document.getElementById('year');
+const year = document.getElementById('year');
 
 if (year) {
-  year.textContent =
-    new Date().getFullYear();
+  year.textContent = new Date().getFullYear();
 }
 
 
@@ -91,198 +80,150 @@ if (year) {
 // HERO MOTION
 // ==============================
 
-const hero =
-  document.querySelector('.hero');
-
-const visual =
-  document.querySelector('.hero-visual');
+const hero = document.querySelector('.hero');
+const visual = document.querySelector('.hero-visual');
 
 if (hero && visual) {
-  hero.addEventListener(
-    'mousemove',
-    (e) => {
-      if (window.innerWidth < 1000) {
-        return;
-      }
+  hero.addEventListener('mousemove', (e) => {
+    if (window.innerWidth < 1000) return;
 
-      const x =
-        (
-          e.clientX /
-          window.innerWidth
-          -
-          0.5
-        ) * 14;
+    const x =
+      (e.clientX / window.innerWidth - 0.5) * 14;
 
-      const y =
-        (
-          e.clientY /
-          window.innerHeight
-          -
-          0.5
-        ) * 14;
+    const y =
+      (e.clientY / window.innerHeight - 0.5) * 14;
 
-      visual.style.transform =
-        `translate(${x}px, ${y}px)`;
-    }
-  );
+    visual.style.transform =
+      `translate(${x}px, ${y}px)`;
+  });
 
-  hero.addEventListener(
-    'mouseleave',
-    () => {
-      visual.style.transform =
-        'translate(0,0)';
-    }
-  );
+  hero.addEventListener('mouseleave', () => {
+    visual.style.transform = 'translate(0,0)';
+  });
 }
 
 
 // ==============================
-// LIFE BASE / PACHI BASE
-// SCREEN CAROUSEL
+// PROJECT CAROUSEL
 // ==============================
 
 const carousel =
-  document.getElementById(
-    'projectCarousel'
-  );
+  document.getElementById('projectCarousel');
 
 if (carousel) {
+
   const viewport =
-    carousel.querySelector(
-      '.carousel-viewport'
-    );
+    carousel.querySelector('.carousel-viewport');
 
   const track =
-    carousel.querySelector(
-      '.carousel-track'
-    );
+    carousel.querySelector('.carousel-track');
 
   const slides =
     Array.from(
-      carousel.querySelectorAll(
-        '.carousel-slide'
-      )
+      carousel.querySelectorAll('.carousel-slide')
     );
 
   const dots =
     Array.from(
-      carousel.querySelectorAll(
-        '.carousel-dot'
-      )
+      carousel.querySelectorAll('.carousel-dot')
     );
 
   const prev =
-    carousel.querySelector(
-      '.carousel-prev'
-    );
+    carousel.querySelector('.carousel-prev');
 
   const next =
-    carousel.querySelector(
-      '.carousel-next'
-    );
+    carousel.querySelector('.carousel-next');
 
-  if (
-    viewport &&
-    track &&
-    slides.length > 0
-  ) {
-    let index = 0;
+
+  if (viewport && track && slides.length > 0) {
+
+    let currentIndex = 0;
     let startX = null;
-    let autoSlideTimer = null;
+    let autoTimer = null;
 
 
     // ==============================
-    // SLIDE DISPLAY
+    // SHOW SLIDE
     // ==============================
 
-    const showSlide = (
-      newIndex
-    ) => {
-      index =
-        (
-          newIndex +
-          slides.length
-        ) %
+    function showSlide(index) {
+
+      currentIndex =
+        (index + slides.length) %
         slides.length;
 
       track.style.transform =
-        `translate3d(-${index * 100}%, 0, 0)`;
+        `translate3d(-${currentIndex * 100}%, 0, 0)`;
 
-      dots.forEach(
-        (dot, dotIndex) => {
-          dot.classList.toggle(
-            'active',
-            dotIndex === index
-          );
+      dots.forEach((dot, dotIndex) => {
 
-          dot.setAttribute(
-            'aria-current',
-            dotIndex === index
-              ? 'true'
-              : 'false'
-          );
-        }
-      );
-    };
+        const active =
+          dotIndex === currentIndex;
 
-
-    // ==============================
-    // AUTO SLIDE
-    // ==============================
-
-    const stopAutoSlide = () => {
-      if (autoSlideTimer) {
-        clearInterval(
-          autoSlideTimer
+        dot.classList.toggle(
+          'active',
+          active
         );
 
-        autoSlideTimer = null;
+        dot.setAttribute(
+          'aria-current',
+          active ? 'true' : 'false'
+        );
+      });
+    }
+
+
+    // ==============================
+    // NEXT / PREV
+    // ==============================
+
+    function nextSlide() {
+      showSlide(currentIndex + 1);
+    }
+
+    function prevSlide() {
+      showSlide(currentIndex - 1);
+    }
+
+
+    // ==============================
+    // AUTO PLAY
+    // ==============================
+
+    function stopAutoPlay() {
+
+      if (autoTimer !== null) {
+        clearInterval(autoTimer);
+        autoTimer = null;
       }
-    };
+    }
 
-    const startAutoSlide = () => {
-      stopAutoSlide();
+    function startAutoPlay() {
 
-      autoSlideTimer =
-        setInterval(
-          () => {
-            showSlide(
-              index + 1
-            );
-          },
-          4000
-        );
-    };
+      stopAutoPlay();
+
+      autoTimer = setInterval(() => {
+        nextSlide();
+      }, 3000);
+    }
 
 
     // ==============================
-    // BUTTONS
+    // ARROW BUTTONS
     // ==============================
 
     if (prev) {
-      prev.addEventListener(
-        'click',
-        () => {
-          showSlide(
-            index - 1
-          );
-
-          startAutoSlide();
-        }
-      );
+      prev.addEventListener('click', () => {
+        prevSlide();
+        startAutoPlay();
+      });
     }
 
     if (next) {
-      next.addEventListener(
-        'click',
-        () => {
-          showSlide(
-            index + 1
-          );
-
-          startAutoSlide();
-        }
-      );
+      next.addEventListener('click', () => {
+        nextSlide();
+        startAutoPlay();
+      });
     }
 
 
@@ -290,37 +231,28 @@ if (carousel) {
     // DOT BUTTONS
     // ==============================
 
-    dots.forEach(
-      (dot, dotIndex) => {
-        dot.addEventListener(
-          'click',
-          () => {
-            showSlide(
-              dotIndex
-            );
+    dots.forEach((dot, dotIndex) => {
 
-            startAutoSlide();
-          }
-        );
-      }
-    );
+      dot.addEventListener('click', () => {
+
+        showSlide(dotIndex);
+
+        startAutoPlay();
+      });
+    });
 
 
     // ==============================
-    // TOUCH / MOUSE SWIPE
+    // POINTER / SWIPE
     // ==============================
 
     viewport.addEventListener(
       'pointerdown',
       (e) => {
-        startX =
-          e.clientX;
 
-        stopAutoSlide();
+        startX = e.clientX;
 
-        if (
-          viewport.setPointerCapture
-        ) {
+        if (viewport.setPointerCapture) {
           viewport.setPointerCapture(
             e.pointerId
           );
@@ -331,64 +263,34 @@ if (carousel) {
     viewport.addEventListener(
       'pointerup',
       (e) => {
-        if (
-          startX === null
-        ) {
-          startAutoSlide();
-          return;
-        }
+
+        if (startX === null) return;
 
         const diff =
-          e.clientX -
-          startX;
+          e.clientX - startX;
 
-        if (
-          Math.abs(diff) >= 45
-        ) {
-          if (
-            diff < 0
-          ) {
-            showSlide(
-              index + 1
-            );
+        if (Math.abs(diff) >= 45) {
+
+          if (diff < 0) {
+            nextSlide();
           } else {
-            showSlide(
-              index - 1
-            );
+            prevSlide();
           }
         }
 
         startX = null;
 
-        startAutoSlide();
+        startAutoPlay();
       }
     );
 
     viewport.addEventListener(
       'pointercancel',
       () => {
+
         startX = null;
 
-        startAutoSlide();
-      }
-    );
-
-
-    // ==============================
-    // PAUSE ON HOVER
-    // ==============================
-
-    carousel.addEventListener(
-      'mouseenter',
-      () => {
-        stopAutoSlide();
-      }
-    );
-
-    carousel.addEventListener(
-      'mouseleave',
-      () => {
-        startAutoSlide();
+        startAutoPlay();
       }
     );
 
@@ -405,55 +307,42 @@ if (carousel) {
     carousel.addEventListener(
       'keydown',
       (e) => {
-        if (
-          e.key ===
-          'ArrowLeft'
-        ) {
-          showSlide(
-            index - 1
-          );
 
-          startAutoSlide();
+        if (e.key === 'ArrowLeft') {
+          prevSlide();
+          startAutoPlay();
         }
 
-        if (
-          e.key ===
-          'ArrowRight'
-        ) {
-          showSlide(
-            index + 1
-          );
-
-          startAutoSlide();
+        if (e.key === 'ArrowRight') {
+          nextSlide();
+          startAutoPlay();
         }
       }
     );
 
 
     // ==============================
-    // TAB / WINDOW VISIBILITY
+    // PAGE VISIBILITY
     // ==============================
 
     document.addEventListener(
       'visibilitychange',
       () => {
-        if (
-          document.hidden
-        ) {
-          stopAutoSlide();
+
+        if (document.hidden) {
+          stopAutoPlay();
         } else {
-          startAutoSlide();
+          startAutoPlay();
         }
       }
     );
 
 
     // ==============================
-    // INITIAL
+    // START
     // ==============================
 
     showSlide(0);
-
-    startAutoSlide();
+    startAutoPlay();
   }
 }
