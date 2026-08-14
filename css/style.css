@@ -814,3 +814,687 @@ a{color:inherit;text-decoration:none}
     letter-spacing:.28em;
   }
 }
+/* =========================================================
+   MAR CREATOR SECTION - FIXED VERSION
+   ========================================================= */
+
+.creator {
+  padding:
+    0
+    clamp(22px, 4vw, 68px)
+    120px;
+}
+
+
+.creator-inner {
+  position: relative;
+
+  max-width:
+    calc(var(--max) - 136px);
+
+  min-height: 540px;
+
+  margin: auto;
+
+  padding:
+    70px
+    clamp(36px, 5vw, 76px);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(380px, 0.9fr);
+
+  align-items: center;
+
+  gap: 40px;
+
+  overflow: hidden;
+
+  border:
+    1px solid
+    rgba(255, 31, 45, 0.35);
+
+  background:
+    radial-gradient(
+      circle at 78% 50%,
+      rgba(255,31,45,.15),
+      transparent 30%
+    ),
+    linear-gradient(
+      100deg,
+      #08080a 0%,
+      #08080a 48%,
+      #100608 100%
+    );
+}
+
+
+
+/* =========================
+   LEFT TEXT
+   ========================= */
+
+.creator-copy {
+  position: relative;
+
+  z-index: 10;
+
+  max-width: 680px;
+}
+
+
+.creator-copy h2 {
+  margin: 0;
+
+  font:
+    900
+    clamp(60px, 6.4vw, 104px)
+    / .9
+    "Barlow Condensed",
+    "Noto Sans JP",
+    sans-serif;
+
+  letter-spacing: -.04em;
+}
+
+
+.creator-channel {
+  display: block;
+
+  margin-top: 18px;
+
+  color: var(--red);
+
+  font-size: .32em;
+
+  letter-spacing: .36em;
+}
+
+
+.creator-copy > p:not(.eyebrow) {
+  margin-top: 28px;
+
+  color: #aaaab1;
+
+  line-height: 1.9;
+}
+
+
+.creator-stream-btn {
+  position: relative;
+
+  margin-top: 32px;
+
+  overflow: hidden;
+
+  box-shadow:
+    0 0 32px
+    rgba(255,31,45,.22);
+}
+
+
+.creator-stream-btn::before {
+  content: "";
+
+  position: absolute;
+
+  top: -30%;
+
+  left: -50%;
+
+  width: 30%;
+
+  height: 160%;
+
+  transform: skewX(-25deg);
+
+  background:
+    linear-gradient(
+      90deg,
+      transparent,
+      rgba(255,255,255,.6),
+      transparent
+    );
+
+  animation:
+    creator-button-light
+    3.2s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes creator-button-light {
+
+  0%,
+  55% {
+    left: -50%;
+  }
+
+  85%,
+  100% {
+    left: 130%;
+  }
+
+}
+
+
+
+/* =========================
+   CHARACTER AREA
+   ========================= */
+
+.creator-visual {
+  position: relative;
+
+  width:
+    min(100%, 480px);
+
+  aspect-ratio: 1;
+
+  justify-self: center;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  z-index: 5;
+}
+
+
+
+/* =========================
+   CHARACTER IMAGE
+   ========================= */
+
+.creator-image-circle {
+  position: relative;
+
+  z-index: 8;
+
+  width: 70%;
+
+  aspect-ratio: 1;
+
+  overflow: hidden;
+
+  border-radius: 50%;
+
+  background: #070709;
+
+  box-shadow:
+    0 0 0 2px
+    rgba(255,255,255,.12),
+    0 0 35px
+    rgba(255,31,45,.28);
+
+  animation:
+    creator-character-float
+    4s
+    ease-in-out
+    infinite;
+}
+
+
+.creator-image {
+  display: block;
+
+  width: 100%;
+
+  height: 100%;
+
+  object-fit: cover;
+}
+
+
+@keyframes creator-character-float {
+
+  0%,
+  100% {
+    transform:
+      translateY(0)
+      scale(1);
+  }
+
+  50% {
+    transform:
+      translateY(-8px)
+      scale(1.01);
+  }
+
+}
+
+
+
+/* =========================
+   ROTATING RINGS
+   ========================= */
+
+.creator-ring {
+  position: absolute;
+
+  top: 50%;
+
+  left: 50%;
+
+  border-radius: 50%;
+
+  pointer-events: none;
+}
+
+
+.ring-outer {
+  width: 92%;
+
+  height: 92%;
+
+  transform:
+    translate(-50%, -50%);
+
+  border:
+    1px dashed
+    rgba(255,31,45,.38);
+
+  animation:
+    creator-ring-spin-outer
+    18s
+    linear
+    infinite;
+}
+
+
+.ring-middle {
+  width: 82%;
+
+  height: 82%;
+
+  border:
+    5px solid
+    transparent;
+
+  background:
+    linear-gradient(
+      #08080a,
+      #08080a
+    )
+    padding-box,
+
+    conic-gradient(
+      from 0deg,
+
+      transparent 0deg 24deg,
+
+      #ffffff 24deg 48deg,
+
+      #ff1f2d 48deg 100deg,
+
+      transparent 100deg 142deg,
+
+      #ff1f2d 142deg 210deg,
+
+      #ffffff 210deg 232deg,
+
+      transparent 232deg 288deg,
+
+      #ff1f2d 288deg 350deg,
+
+      transparent 350deg 360deg
+    )
+    border-box;
+
+  filter:
+    drop-shadow(
+      0 0 9px
+      rgba(255,31,45,.65)
+    );
+
+  animation:
+    creator-ring-spin-middle
+    8s
+    linear
+    infinite;
+}
+
+
+.ring-inner {
+  width: 75%;
+
+  height: 75%;
+
+  border:
+    1px solid
+    rgba(255,255,255,.13);
+
+  box-shadow:
+    inset 0 0 35px
+    rgba(255,31,45,.08);
+
+  animation:
+    creator-ring-pulse
+    2.8s
+    ease-in-out
+    infinite;
+}
+
+
+@keyframes creator-ring-spin-outer {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(-360deg);
+  }
+
+}
+
+
+@keyframes creator-ring-spin-middle {
+
+  from {
+    transform:
+      translate(-50%, -50%)
+      rotate(0deg);
+  }
+
+  to {
+    transform:
+      translate(-50%, -50%)
+      rotate(360deg);
+  }
+
+}
+
+
+@keyframes creator-ring-pulse {
+
+  0%,
+  100% {
+    transform:
+      translate(-50%, -50%)
+      scale(.98);
+
+    opacity: .45;
+  }
+
+  50% {
+    transform:
+      translate(-50%, -50%)
+      scale(1.03);
+
+    opacity: 1;
+  }
+
+}
+
+
+
+/* =========================
+   NOW STREAMING TEXT
+   ========================= */
+
+.stream-text {
+  position: absolute;
+
+  z-index: 12;
+
+  color: #fff;
+
+  font:
+    700
+    11px
+    "Barlow Condensed",
+    sans-serif;
+
+  letter-spacing: .38em;
+
+  text-shadow:
+    0 0 12px
+    rgba(255,31,45,.9);
+
+  pointer-events: none;
+}
+
+
+.stream-text-top {
+  top: 11%;
+
+  left: 8%;
+
+  transform:
+    rotate(-37deg);
+}
+
+
+.stream-text-bottom {
+  right: 6%;
+
+  bottom: 10%;
+
+  transform:
+    rotate(-37deg);
+}
+
+
+
+/* =========================
+   BLINKING DOTS
+   ========================= */
+
+.creator-dot {
+  position: absolute;
+
+  z-index: 13;
+
+  width: 9px;
+
+  height: 9px;
+
+  border-radius: 50%;
+
+  background: var(--red);
+
+  box-shadow:
+    0 0 16px
+    var(--red);
+
+  animation:
+    creator-dot-blink
+    1.3s
+    ease-in-out
+    infinite
+    alternate;
+}
+
+
+.dot-1 {
+  left: 7%;
+
+  top: 46%;
+}
+
+
+.dot-2 {
+  right: 8%;
+
+  top: 28%;
+
+  animation-delay: .35s;
+}
+
+
+.dot-3 {
+  right: 18%;
+
+  bottom: 7%;
+
+  animation-delay: .7s;
+}
+
+
+@keyframes creator-dot-blink {
+
+  from {
+    opacity: 1;
+
+    transform: scale(1);
+  }
+
+  to {
+    opacity: .2;
+
+    transform: scale(.55);
+  }
+
+}
+
+
+
+/* =========================
+   BACKGROUND MAR
+   ========================= */
+
+.creator-bg-mar {
+  position: absolute;
+
+  right: 2%;
+
+  top: 8%;
+
+  z-index: 1;
+
+  font:
+    900
+    clamp(160px, 19vw, 300px)
+    "Barlow Condensed",
+    sans-serif;
+
+  color:
+    rgba(255,255,255,.025);
+
+  transform:
+    skewX(-8deg);
+
+  pointer-events: none;
+}
+
+
+
+/* =========================
+   RIGHT VERTICAL TEXT
+   ========================= */
+
+.creator-side-copy {
+  position: absolute;
+
+  right: 18px;
+
+  top: 50%;
+
+  z-index: 14;
+
+  transform:
+    translateY(-50%)
+    rotate(90deg);
+
+  font:
+    600
+    9px
+    "Barlow Condensed",
+    sans-serif;
+
+  letter-spacing: .4em;
+
+  color: #74747a;
+}
+
+
+
+/* =========================
+   RESPONSIVE
+   ========================= */
+
+@media (max-width: 1000px) {
+
+  .creator-inner {
+    grid-template-columns: 1fr;
+
+    padding:
+      56px
+      38px;
+  }
+
+
+  .creator-visual {
+    width:
+      min(100%, 500px);
+
+    justify-self: center;
+
+    margin-top: 20px;
+  }
+
+}
+
+
+@media (max-width: 700px) {
+
+  .creator {
+    padding:
+      0
+      20px
+      90px;
+  }
+
+
+  .creator-inner {
+    min-height: 0;
+
+    padding:
+      42px
+      22px
+      48px;
+  }
+
+
+  .creator-copy h2 {
+    font-size:
+      clamp(
+        52px,
+        15vw,
+        76px
+      );
+  }
+
+
+  .creator-visual {
+    width: 100%;
+  }
+
+
+  .creator-image-circle {
+    width: 68%;
+  }
+
+
+  .stream-text {
+    font-size: 8px;
+
+    letter-spacing: .26em;
+  }
+
+
+  .creator-side-copy {
+    display: none;
+  }
+
+}
