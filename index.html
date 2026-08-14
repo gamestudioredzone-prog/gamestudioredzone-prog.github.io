@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="ja">
-
 <head>
   <meta charset="UTF-8">
 
@@ -22,1850 +21,29 @@
   <title>GAME STUDIO REDZONE</title>
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
-
-  <link
-    rel="preconnect"
-    href="https://fonts.gstatic.com"
-    crossorigin
-  >
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
   <link
     href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap"
     rel="stylesheet"
   >
 
-  <style>
-
-    :root{
-      --bg:#050505;
-      --panel:#0b0b0d;
-      --text:#f5f5f3;
-      --muted:#9b9ba3;
-      --line:rgba(255,255,255,.10);
-      --red:#ff1f2d;
-      --max:1440px;
-    }
-
-    *{
-      box-sizing:border-box;
-    }
-
-    html{
-      scroll-behavior:smooth;
-    }
-
-    body{
-      margin:0;
-
-      background:
-        radial-gradient(
-          circle at 75% 10%,
-          rgba(255,31,45,.10),
-          transparent 28%
-        ),
-        #050505;
-
-      color:var(--text);
-
-      font-family:
-        "Noto Sans JP",
-        sans-serif;
-
-      overflow-x:hidden;
-    }
-
-    a{
-      color:inherit;
-      text-decoration:none;
-    }
-
-    button{
-      font:inherit;
-    }
-
-    .noise{
-      position:fixed;
-      inset:0;
-      z-index:1000;
-      pointer-events:none;
-      opacity:.035;
-
-      background-image:
-        url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='.8'/%3E%3C/svg%3E");
-    }
-
-
-    /* HEADER */
-
-    .site-header{
-      position:fixed;
-      top:0;
-      left:0;
-      right:0;
-
-      height:84px;
-
-      z-index:100;
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-
-      padding:0 clamp(22px,4vw,68px);
-
-      background:rgba(4,4,5,.88);
-
-      border-bottom:1px solid rgba(255,255,255,.07);
-
-      backdrop-filter:blur(18px);
-    }
-
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:12px;
-    }
-
-    .brand-mark{
-      width:48px;
-      height:48px;
-
-      display:grid;
-      place-items:center;
-
-      background:
-        linear-gradient(
-          135deg,
-          #202025 0 48%,
-          var(--red) 49% 100%
-        );
-
-      clip-path:
-        polygon(
-          14% 0,
-          100% 0,
-          86% 100%,
-          0 100%
-        );
-
-      color:#fff;
-
-      font:
-        900 26px
-        "Barlow Condensed";
-
-      letter-spacing:-2px;
-    }
-
-    .brand-copy{
-      display:flex;
-      flex-direction:column;
-      line-height:1;
-    }
-
-    .brand-copy b{
-      font:
-        800 24px
-        "Barlow Condensed";
-
-      letter-spacing:.18em;
-    }
-
-    .brand-copy small{
-      margin-top:5px;
-
-      color:#888;
-
-      font:
-        600 9px
-        "Barlow Condensed";
-
-      letter-spacing:.4em;
-    }
-
-    .nav{
-      display:flex;
-      gap:34px;
-    }
-
-    .nav a{
-      position:relative;
-
-      padding:32px 0 27px;
-
-      color:#bbb;
-
-      font:
-        700 13px
-        "Barlow Condensed";
-
-      letter-spacing:.2em;
-    }
-
-    .nav a::after{
-      content:"";
-
-      position:absolute;
-
-      left:0;
-      right:100%;
-      bottom:20px;
-
-      height:2px;
-
-      background:var(--red);
-
-      transition:.25s;
-    }
-
-    .nav a:hover{
-      color:#fff;
-    }
-
-    .nav a:hover::after{
-      right:0;
-    }
-
-    .menu-toggle{
-      display:none;
-      border:0;
-      background:none;
-      cursor:pointer;
-    }
-
-    .menu-toggle span{
-      display:block;
-
-      width:26px;
-      height:2px;
-
-      margin:6px;
-
-      background:#fff;
-    }
-
-
-    /* HERO */
-
-    .hero{
-      position:relative;
-
-      min-height:860px;
-
-      padding:
-        170px
-        clamp(22px,6vw,100px)
-        90px;
-
-      display:grid;
-
-      grid-template-columns:
-        minmax(0,1.1fr)
-        minmax(420px,.9fr);
-
-      gap:40px;
-
-      align-items:center;
-
-      overflow:hidden;
-    }
-
-    .hero::before{
-      content:"";
-
-      position:absolute;
-      inset:0;
-
-      background:
-        linear-gradient(
-          100deg,
-          rgba(0,0,0,.93),
-          rgba(0,0,0,.70) 45%,
-          rgba(0,0,0,.18)
-        );
-    }
-
-    .hero-grid{
-      position:absolute;
-
-      right:-10%;
-      top:-5%;
-
-      width:70%;
-      height:110%;
-
-      opacity:.35;
-
-      background-image:
-        linear-gradient(
-          rgba(255,255,255,.05) 1px,
-          transparent 1px
-        ),
-        linear-gradient(
-          90deg,
-          rgba(255,255,255,.05) 1px,
-          transparent 1px
-        );
-
-      background-size:48px 48px;
-
-      transform:
-        perspective(700px)
-        rotateY(-18deg)
-        rotateZ(-4deg);
-    }
-
-    .hero-copy{
-      position:relative;
-      z-index:5;
-    }
-
-    .eyebrow{
-      margin:0 0 18px;
-
-      color:var(--red);
-
-      font:
-        700 13px
-        "Barlow Condensed";
-
-      letter-spacing:.34em;
-    }
-
-    .hero h1{
-      margin:0;
-
-      font-family:"Barlow Condensed";
-      font-weight:900;
-      line-height:.82;
-    }
-
-    .hero h1>span{
-      display:block;
-
-      font-size:
-        clamp(48px,6vw,92px);
-    }
-
-    .hero h1 strong{
-      display:block;
-
-      color:var(--red);
-
-      font-size:
-        clamp(96px,13vw,205px);
-
-      letter-spacing:-.045em;
-    }
-
-    .hero h1 strong span{
-      color:#f4f4f4;
-    }
-
-    .hero-ja{
-      margin:22px 0 14px;
-
-      font-size:
-        clamp(26px,2.7vw,44px);
-
-      font-weight:900;
-    }
-
-    .hero-lead{
-      color:#b9b9bf;
-      line-height:1.9;
-    }
-
-    .hero-actions,
-    .contact-actions{
-      display:flex;
-      gap:14px;
-      flex-wrap:wrap;
-      margin-top:34px;
-    }
-
-
-    /* BUTTON */
-
-    .btn{
-      min-width:190px;
-      height:54px;
-
-      padding:0 22px;
-
-      display:inline-flex;
-      align-items:center;
-      justify-content:space-between;
-
-      border:1px solid var(--line);
-
-      font:
-        700 13px
-        "Barlow Condensed";
-
-      letter-spacing:.18em;
-
-      transition:.25s;
-    }
-
-    .btn-primary{
-      background:
-        linear-gradient(
-          90deg,
-          #b90016,
-          var(--red)
-        );
-
-      border-color:transparent;
-    }
-
-    .btn-primary:hover{
-      transform:translateY(-2px);
-
-      box-shadow:
-        0 8px 35px
-        rgba(255,31,45,.30);
-    }
-
-    .btn-ghost{
-      background:rgba(255,255,255,.02);
-    }
-
-    .btn-ghost:hover{
-      background:#fff;
-      color:#050505;
-    }
-
-
-    /* HERO LOGO */
-
-    .hero-visual{
-      position:relative;
-      z-index:5;
-
-      width:min(45vw,650px);
-      aspect-ratio:1;
-
-      justify-self:end;
-
-      display:grid;
-      place-items:center;
-    }
-
-    .hero-ring{
-      position:absolute;
-
-      border-radius:50%;
-
-      border:
-        1px solid
-        rgba(255,255,255,.13);
-    }
-
-    .hero-ring.one{
-      width:95%;
-      height:95%;
-
-      border-color:
-        rgba(255,31,45,.36);
-
-      animation:
-        spin 18s linear infinite;
-    }
-
-    .hero-ring.two{
-      width:72%;
-      height:72%;
-
-      border-style:dashed;
-
-      animation:
-        spin 30s linear infinite reverse;
-    }
-
-    .hero-ring.three{
-      width:48%;
-      height:48%;
-    }
-
-    .core-logo{
-      font:
-        900
-        clamp(100px,12vw,180px)
-        "Barlow Condensed";
-
-      letter-spacing:-.11em;
-
-      transform:skewX(-7deg);
-    }
-
-    .core-logo span{
-      color:var(--red);
-    }
-
-    @keyframes spin{
-      to{
-        transform:rotate(360deg);
-      }
-    }
-
-
-    /* TICKER */
-
-    .ticker{
-      height:74px;
-
-      overflow:hidden;
-
-      border-top:1px solid var(--line);
-      border-bottom:1px solid var(--line);
-
-      background:#080809;
-    }
-
-    .ticker-track{
-      height:100%;
-
-      width:max-content;
-
-      display:flex;
-      align-items:center;
-
-      gap:34px;
-
-      white-space:nowrap;
-
-      animation:
-        ticker 30s linear infinite;
-    }
-
-    .ticker span{
-      font:
-        700 20px
-        "Barlow Condensed";
-
-      letter-spacing:.16em;
-    }
-
-    .ticker i{
-      color:var(--red);
-      font-style:normal;
-    }
-
-    @keyframes ticker{
-      to{
-        transform:translateX(-50%);
-      }
-    }
-
-
-    /* GENERAL */
-
-    .section{
-      max-width:var(--max);
-
-      margin:auto;
-
-      padding:
-        120px
-        clamp(22px,4vw,68px);
-    }
-
-    .section h2{
-      margin:0;
-
-      font:
-        900
-        clamp(52px,7vw,104px)/.92
-        "Barlow Condensed";
-    }
-
-    .section-head{
-      max-width:820px;
-    }
-
-    .section-head>p:last-child{
-      color:#aaaab1;
-      line-height:2;
-    }
-
-
-    /* ABOUT */
-
-    .principles{
-      margin-top:70px;
-
-      display:grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap:1px;
-
-      background:var(--line);
-    }
-
-    .principle{
-      min-height:230px;
-
-      padding:38px;
-
-      background:#080809;
-    }
-
-    .principle>span{
-      color:var(--red);
-    }
-
-    .principle h3{
-      margin:54px 0 10px;
-
-      font:
-        800 32px
-        "Barlow Condensed";
-    }
-
-    .principle p{
-      color:#96969d;
-
-      font-size:13px;
-
-      line-height:1.8;
-    }
-
-
-    /* PROJECTS */
-
-    .section-title-row{
-      margin-bottom:58px;
-
-      display:flex;
-
-      align-items:flex-end;
-
-      justify-content:space-between;
-    }
-
-    .section-note{
-      color:#777;
-
-      font:
-        500 12px
-        "Barlow Condensed";
-
-      letter-spacing:.18em;
-    }
-
-    .project-card{
-      border:1px solid var(--line);
-
-      background:
-        linear-gradient(
-          145deg,
-          #0c0c0f,
-          #070708
-        );
-    }
-
-    .project-card.lifebase{
-      display:grid;
-
-      grid-template-columns:
-        minmax(520px,1fr)
-        minmax(0,1fr);
-
-      min-height:650px;
-    }
-
-    .project-copy{
-      padding:56px;
-    }
-
-    .project-index{
-      color:#777;
-
-      font:
-        600 11px
-        "Barlow Condensed";
-
-      letter-spacing:.25em;
-    }
-
-    .project-copy h3{
-      margin:20px 0;
-
-      font:
-        900
-        clamp(64px,7vw,115px)/.82
-        "Barlow Condensed";
-    }
-
-    .project-copy>p:not(.project-index){
-      color:#a3a3aa;
-      line-height:1.9;
-    }
-
-    .project-tags{
-      margin:28px 0;
-
-      display:flex;
-      gap:8px;
-      flex-wrap:wrap;
-    }
-
-    .project-tags span{
-      padding:8px 12px;
-
-      border:1px solid var(--line);
-
-      font:
-        600 10px
-        "Barlow Condensed";
-
-      letter-spacing:.16em;
-    }
-
-    .text-link{
-      display:inline-flex;
-      gap:24px;
-
-      padding-bottom:8px;
-
-      border-bottom:1px solid var(--red);
-
-      font:
-        700 13px
-        "Barlow Condensed";
-
-      letter-spacing:.18em;
-    }
-
-
-    /* CAROUSEL */
-
-    .project-visual-real{
-      min-height:650px;
-
-      padding:32px 24px;
-
-      display:flex;
-      align-items:center;
-      justify-content:center;
-
-      background:
-        radial-gradient(
-          circle,
-          rgba(255,31,45,.09),
-          transparent 45%
-        ),
-        #09090b;
-    }
-
-    .project-carousel{
-      position:relative;
-
-      width:100%;
-
-      max-width:560px;
-
-      height:590px;
-
-      overflow:hidden;
-
-      border:
-        1px solid
-        rgba(255,255,255,.15);
-
-      background:#050505;
-    }
-
-    .carousel-viewport{
-      width:100%;
-      height:100%;
-
-      overflow:hidden;
-
-      touch-action:pan-y;
-    }
-
-    .carousel-track{
-      width:100%;
-      height:100%;
-
-      display:flex;
-
-      transition:
-        transform .55s
-        cubic-bezier(.22,.61,.36,1);
-    }
-
-    .carousel-slide{
-      flex:0 0 100%;
-
-      min-width:100%;
-
-      height:100%;
-
-      display:flex;
-      justify-content:center;
-      align-items:center;
-    }
-
-    .carousel-phone{
-      position:relative;
-
-      width:220px;
-      height:587px;
-
-      overflow:hidden;
-
-      background:#050505;
-    }
-
-    .carousel-phone img{
-      position:absolute;
-
-      top:0;
-      left:0;
-
-      width:400%;
-      height:100%;
-
-      max-width:none;
-
-      display:block;
-    }
-
-    .panel-1 img{
-      transform:translateX(0);
-    }
-
-    .panel-2 img{
-      transform:translateX(-25%);
-    }
-
-    .panel-3 img{
-      transform:translateX(-50%);
-    }
-
-    .panel-4 img{
-      transform:translateX(-75%);
-    }
-
-    .carousel-arrow{
-      position:absolute;
-
-      top:50%;
-
-      z-index:40;
-
-      width:48px;
-      height:48px;
-
-      transform:translateY(-50%);
-
-      border:
-        1px solid
-        rgba(255,255,255,.25);
-
-      border-radius:50%;
-
-      background:rgba(5,5,7,.82);
-
-      color:#fff;
-
-      font-size:30px;
-
-      cursor:pointer;
-    }
-
-    .carousel-prev{
-      left:16px;
-    }
-
-    .carousel-next{
-      right:16px;
-    }
-
-    .carousel-arrow:hover{
-      background:var(--red);
-    }
-
-    .carousel-dots{
-      position:absolute;
-
-      z-index:41;
-
-      left:50%;
-      bottom:18px;
-
-      transform:translateX(-50%);
-
-      display:flex;
-
-      gap:8px;
-    }
-
-    .carousel-dot{
-      width:10px;
-      height:10px;
-
-      padding:0;
-
-      border:
-        1px solid
-        rgba(255,255,255,.7);
-
-      border-radius:50%;
-
-      background:
-        rgba(255,255,255,.15);
-
-      cursor:pointer;
-
-      transition:.25s;
-    }
-
-    .carousel-dot.active{
-      width:26px;
-
-      border-radius:20px;
-
-      background:var(--red);
-
-      border-color:var(--red);
-    }
-
-    .project-shot-label{
-      position:absolute;
-
-      left:16px;
-      bottom:15px;
-
-      z-index:42;
-
-      padding:7px 10px;
-
-      background:rgba(4,4,5,.88);
-
-      border:
-        1px solid
-        rgba(255,31,45,.5);
-
-      font:
-        700 10px
-        "Barlow Condensed";
-
-      letter-spacing:.15em;
-    }
-
-
-    /* OTHER PROJECTS */
-
-    .project-grid{
-      margin-top:20px;
-
-      display:grid;
-
-      grid-template-columns:
-        1.2fr .8fr;
-
-      gap:20px;
-    }
-
-    .coming,
-    .next{
-      position:relative;
-
-      min-height:500px;
-
-      padding:50px;
-
-      overflow:hidden;
-    }
-
-    .coming h3,
-    .next h3{
-      font:
-        900 90px/.82
-        "Barlow Condensed";
-
-      margin:30px 0;
-    }
-
-    .classified{
-      color:var(--red);
-    }
-
-    .plus{
-      position:absolute;
-
-      right:40px;
-      top:20px;
-
-      font:
-        900 250px
-        "Barlow Condensed";
-
-      color:
-        rgba(255,31,45,.08);
-    }
-
-
-    /* CREATOR */
-
-    .creator{
-      padding:
-        0
-        clamp(22px,4vw,68px)
-        120px;
-    }
-
-    .creator-inner{
-      position:relative;
-
-      max-width:
-        calc(var(--max) - 136px);
-
-      min-height:570px;
-
-      margin:auto;
-
-      padding:
-        70px
-        clamp(34px,5vw,72px);
-
-      display:grid;
-
-      grid-template-columns:
-        minmax(0,1fr)
-        minmax(380px,.9fr);
-
-      align-items:center;
-
-      gap:40px;
-
-      overflow:hidden;
-
-      border:
-        1px solid
-        rgba(255,31,45,.32);
-
-      background:
-        radial-gradient(
-          circle at 78% 50%,
-          rgba(255,31,45,.18),
-          transparent 30%
-        ),
-        #08080a;
-    }
-
-    .creator-copy{
-      position:relative;
-      z-index:10;
-    }
-
-    .creator-copy h2{
-      margin:0;
-
-      font:
-        900
-        clamp(56px,6vw,96px)/.92
-        "Barlow Condensed",
-        "Noto Sans JP";
-
-      letter-spacing:-.04em;
-    }
-
-    .creator-channel{
-      display:block;
-
-      margin-top:16px;
-
-      color:var(--red);
-
-      font-size:.32em;
-
-      letter-spacing:.38em;
-    }
-
-    .creator-copy>p:not(.eyebrow){
-      color:#aaaab1;
-
-      line-height:1.9;
-
-      margin-top:28px;
-    }
-
-    .creator-stream-btn{
-      margin-top:32px;
-    }
-
-    .creator-visual{
-      position:relative;
-
-      z-index:5;
-
-      width:min(100%,470px);
-
-      aspect-ratio:1;
-
-      display:grid;
-      place-items:center;
-
-      justify-self:center;
-    }
-
-    .creator-character-frame{
-      position:relative;
-
-      z-index:10;
-
-      width:69%;
-
-      aspect-ratio:1;
-
-      overflow:hidden;
-
-      border-radius:50%;
-
-      background:#050507;
-
-      box-shadow:
-        0 0 0 2px
-        rgba(255,255,255,.1),
-        0 0 40px
-        rgba(255,31,45,.25);
-
-      animation:
-        creatorFloat 4s ease-in-out infinite;
-    }
-
-    .creator-character{
-      width:100%;
-      height:100%;
-
-      object-fit:cover;
-
-      display:block;
-    }
-
-    @keyframes creatorFloat{
-      0%,
-      100%{
-        transform:translateY(0);
-      }
-
-      50%{
-        transform:translateY(-8px);
-      }
-    }
-
-    .creator-ring{
-      position:absolute;
-
-      left:50%;
-      top:50%;
-
-      border-radius:50%;
-
-      pointer-events:none;
-    }
-
-    .creator-ring-outer{
-      width:94%;
-      height:94%;
-
-      border:
-        1px dashed
-        rgba(255,31,45,.4);
-
-      animation:
-        creatorSpinBack 17s linear infinite;
-    }
-
-    .creator-ring-main{
-      width:82%;
-      height:82%;
-
-      border:
-        5px solid transparent;
-
-      background:
-        linear-gradient(
-          #08080a,
-          #08080a
-        )
-        padding-box,
-
-        conic-gradient(
-          from 0deg,
-          transparent 0 22deg,
-          #fff 22deg 48deg,
-          #ff1f2d 48deg 103deg,
-          transparent 103deg 145deg,
-          #ff1f2d 145deg 207deg,
-          #fff 207deg 229deg,
-          transparent 229deg 287deg,
-          #ff1f2d 287deg 351deg,
-          transparent 351deg 360deg
-        )
-        border-box;
-
-      filter:
-        drop-shadow(
-          0 0 10px
-          rgba(255,31,45,.65)
-        );
-
-      animation:
-        creatorSpin 8s linear infinite;
-    }
-
-    .creator-ring-inner{
-      width:74%;
-      height:74%;
-
-      border:
-        1px solid
-        rgba(255,255,255,.13);
-
-      animation:
-        creatorPulse 2.8s ease-in-out infinite;
-    }
-
-    @keyframes creatorSpin{
-      from{
-        transform:
-          translate(-50%,-50%)
-          rotate(0deg);
-      }
-
-      to{
-        transform:
-          translate(-50%,-50%)
-          rotate(360deg);
-      }
-    }
-
-    @keyframes creatorSpinBack{
-      from{
-        transform:
-          translate(-50%,-50%)
-          rotate(0deg);
-      }
-
-      to{
-        transform:
-          translate(-50%,-50%)
-          rotate(-360deg);
-      }
-    }
-
-    @keyframes creatorPulse{
-      0%,
-      100%{
-        transform:
-          translate(-50%,-50%)
-          scale(.98);
-
-        opacity:.45;
-      }
-
-      50%{
-        transform:
-          translate(-50%,-50%)
-          scale(1.03);
-
-        opacity:1;
-      }
-    }
-
-    .creator-stream-text{
-      position:absolute;
-
-      z-index:15;
-
-      color:#fff;
-
-      font:
-        700 10px
-        "Barlow Condensed";
-
-      letter-spacing:.34em;
-
-      text-shadow:
-        0 0 12px
-        rgba(255,31,45,.9);
-    }
-
-    .stream-top{
-      top:10%;
-      left:7%;
-
-      transform:rotate(-36deg);
-    }
-
-    .stream-bottom{
-      right:6%;
-      bottom:9%;
-
-      transform:rotate(-36deg);
-    }
-
-    .creator-live-dot{
-      position:absolute;
-
-      z-index:15;
-
-      width:9px;
-      height:9px;
-
-      border-radius:50%;
-
-      background:var(--red);
-
-      box-shadow:
-        0 0 17px
-        var(--red);
-
-      animation:
-        dotBlink 1.3s infinite alternate;
-    }
-
-    .live-dot-1{
-      left:7%;
-      top:46%;
-    }
-
-    .live-dot-2{
-      right:8%;
-      top:28%;
-    }
-
-    .live-dot-3{
-      right:18%;
-      bottom:7%;
-    }
-
-    @keyframes dotBlink{
-      to{
-        opacity:.2;
-        transform:scale(.55);
-      }
-    }
-
-    .creator-bg-mar{
-      position:absolute;
-
-      right:3%;
-      top:8%;
-
-      font:
-        900
-        clamp(150px,18vw,285px)
-        "Barlow Condensed";
-
-      color:
-        rgba(255,255,255,.025);
-
-      pointer-events:none;
-    }
-
-    .creator-side-copy{
-      position:absolute;
-
-      right:18px;
-      top:50%;
-
-      transform:
-        translateY(-50%)
-        rotate(90deg);
-
-      color:#74747a;
-
-      font:
-        600 9px
-        "Barlow Condensed";
-
-      letter-spacing:.4em;
-    }
-
-
-    /* NEWS */
-
-    .news-list{
-      margin-top:45px;
-
-      border-top:1px solid var(--line);
-    }
-
-    .news-item{
-      padding:28px 8px;
-
-      display:grid;
-
-      grid-template-columns:
-        120px 120px 1fr 30px;
-
-      gap:24px;
-
-      align-items:center;
-
-      border-bottom:1px solid var(--line);
-    }
-
-    .news-tag{
-      color:var(--red);
-    }
-
-
-    /* CONTACT */
-
-    .contact{
-      min-height:580px;
-
-      display:grid;
-      place-items:center;
-
-      text-align:center;
-
-      border-top:1px solid var(--line);
-
-      background:#080809;
-    }
-
-    .contact-inner{
-      padding:90px 22px;
-    }
-
-    .contact h2{
-      margin:0;
-
-      font:
-        900
-        clamp(52px,7vw,104px)
-        "Barlow Condensed";
-    }
-
-    .contact h2 span{
-      color:var(--red);
-    }
-
-    .contact-actions{
-      justify-content:center;
-    }
-
-
-    /* INFORMATION */
-
-    .information{
-      max-width:var(--max);
-
-      margin:auto;
-
-      padding:
-        100px
-        clamp(22px,4vw,68px)
-        55px;
-    }
-
-    .information-head{
-      margin-bottom:45px;
-    }
-
-    .information-head h2{
-      margin:0;
-
-      font:
-        900
-        clamp(50px,7vw,95px)/.9
-        "Barlow Condensed";
-    }
-
-    .information-grid{
-      display:grid;
-
-      grid-template-columns:
-        repeat(3,1fr);
-
-      gap:16px;
-    }
-
-    .legal-card{
-      border:1px solid var(--line);
-
-      background:
-        linear-gradient(
-          145deg,
-          #0c0c0f,
-          #080809
-        );
-
-      transition:.25s;
-    }
-
-    .legal-card:hover{
-      border-color:
-        rgba(255,31,45,.55);
-    }
-
-    .legal-card[open]{
-      border-color:
-        rgba(255,31,45,.45);
-    }
-
-    .legal-card summary{
-      position:relative;
-
-      padding:
-        28px 58px 28px 28px;
-
-      cursor:pointer;
-
-      list-style:none;
-
-      font:
-        800 24px
-        "Barlow Condensed";
-
-      letter-spacing:.08em;
-    }
-
-    .legal-card summary::-webkit-details-marker{
-      display:none;
-    }
-
-    .legal-card summary::after{
-      content:"+";
-
-      position:absolute;
-
-      right:25px;
-      top:50%;
-
-      transform:translateY(-50%);
-
-      color:var(--red);
-
-      font-size:30px;
-    }
-
-    .legal-card[open] summary::after{
-      content:"−";
-    }
-
-    .legal-small{
-      display:block;
-
-      margin-top:6px;
-
-      color:#777;
-
-      font:
-        500 10px
-        "Barlow Condensed";
-
-      letter-spacing:.15em;
-    }
-
-    .legal-body{
-      padding:
-        5px 28px 32px;
-
-      border-top:1px solid var(--line);
-
-      color:#aaaab1;
-
-      font-size:13px;
-
-      line-height:2;
-    }
-
-    .legal-body h3{
-      margin:25px 0 5px;
-
-      color:#fff;
-
-      font-size:14px;
-    }
-
-    .legal-form-button{
-      margin-top:22px;
-
-      width:100%;
-
-      min-height:54px;
-
-      padding:0 18px;
-
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-
-      border:
-        1px solid
-        rgba(255,31,45,.50);
-
-      background:
-        linear-gradient(
-          90deg,
-          rgba(185,0,22,.30),
-          rgba(255,31,45,.12)
-        );
-
-      color:#fff;
-
-      font:
-        700 12px
-        "Barlow Condensed";
-
-      letter-spacing:.16em;
-
-      transition:.25s;
-    }
-
-    .legal-form-button:hover{
-      background:var(--red);
-      border-color:var(--red);
-    }
-
-    .contact-note{
-      margin-top:24px;
-
-      color:#7f7f86;
-
-      font-size:12px;
-
-      line-height:1.9;
-    }
-
-    .site-bottom{
-      max-width:var(--max);
-
-      margin:auto;
-
-      padding:
-        25px
-        clamp(22px,4vw,68px)
-        40px;
-
-      display:flex;
-
-      justify-content:space-between;
-
-      gap:25px;
-
-      border-top:1px solid var(--line);
-
-      color:#666;
-
-      font:
-        600 10px
-        "Barlow Condensed";
-
-      letter-spacing:.15em;
-    }
-
-
-    /* RESPONSIVE */
-
-    @media(max-width:1000px){
-
-      .menu-toggle{
-        display:block;
-      }
-
-      .nav{
-        position:fixed;
-
-        left:0;
-        right:0;
-        top:84px;
-
-        padding:22px;
-
-        flex-direction:column;
-
-        background:#080809;
-
-        transform:translateY(-150%);
-
-        transition:.3s;
-      }
-
-      .nav.open{
-        transform:translateY(0);
-      }
-
-      .hero{
-        grid-template-columns:1fr;
-      }
-
-      .hero-visual{
-        position:absolute;
-
-        right:-150px;
-
-        opacity:.5;
-      }
-
-      .project-card.lifebase{
-        grid-template-columns:1fr;
-      }
-
-      .project-grid{
-        grid-template-columns:1fr;
-      }
-
-      .creator-inner{
-        grid-template-columns:1fr;
-      }
-
-      .creator-visual{
-        margin-top:30px;
-      }
-
-      .information-grid{
-        grid-template-columns:1fr;
-      }
-    }
-
-
-    @media(max-width:700px){
-
-      .hero{
-        min-height:800px;
-
-        padding:
-          130px 20px 80px;
-      }
-
-      .hero-visual{
-        width:390px;
-
-        right:-190px;
-      }
-
-      .section{
-        padding:
-          90px 20px;
-      }
-
-      .principles{
-        grid-template-columns:1fr;
-      }
-
-      .section-title-row{
-        flex-direction:column;
-        align-items:flex-start;
-      }
-
-      .project-copy{
-        padding:
-          35px 25px;
-      }
-
-      .project-visual-real{
-        min-height:520px;
-
-        padding:
-          20px 10px;
-      }
-
-      .project-carousel{
-        height:500px;
-      }
-
-      .carousel-phone{
-        width:187px;
-        height:498px;
-      }
-
-      .carousel-arrow{
-        width:42px;
-        height:42px;
-      }
-
-      .carousel-prev{
-        left:8px;
-      }
-
-      .carousel-next{
-        right:8px;
-      }
-
-      .creator{
-        padding:
-          0 20px 90px;
-      }
-
-      .creator-inner{
-        padding:
-          42px 22px 48px;
-      }
-
-      .creator-copy h2{
-        font-size:
-          clamp(52px,15vw,76px);
-      }
-
-      .creator-side-copy{
-        display:none;
-      }
-
-      .news-item{
-        grid-template-columns:
-          90px 1fr 20px;
-      }
-
-      .news-tag{
-        display:none;
-      }
-
-      .contact-actions{
-        flex-direction:column;
-      }
-
-      .btn{
-        width:100%;
-      }
-
-      .information{
-        padding:
-          80px 20px 45px;
-      }
-
-      .site-bottom{
-        padding:
-          25px 20px 35px;
-
-        flex-direction:column;
-
-        gap:8px;
-      }
-    }
-
-  </style>
+  <link rel="stylesheet" href="./css/style.css?v=30">
 </head>
-
 
 <body>
 
   <div class="noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
 
 
-  <!-- HEADER -->
+  <!-- =====================================================
+       HEADER
+       ===================================================== -->
 
-  <header
-    class="site-header"
-    id="top"
-  >
+  <header class="site-header" id="top">
 
-    <a
-      class="brand"
-      href="#top"
-    >
+    <a class="brand" href="#top">
 
       <span class="brand-mark">
         RZ
@@ -1890,10 +68,7 @@
     </button>
 
 
-    <nav
-      class="nav"
-      id="nav"
-    >
+    <nav class="nav" id="nav">
       <a href="#about">ABOUT</a>
       <a href="#projects">PROJECTS</a>
       <a href="#creator">CREATOR</a>
@@ -1905,32 +80,31 @@
   </header>
 
 
+
   <main>
 
 
-    <!-- HERO -->
+    <!-- =====================================================
+         HERO
+         ===================================================== -->
 
     <section class="hero">
 
       <div class="hero-grid"></div>
 
+      <div class="hero-orb hero-orb-a"></div>
+      <div class="hero-orb hero-orb-b"></div>
 
-      <div class="hero-copy">
+
+      <div class="hero-copy reveal">
 
         <p class="eyebrow">
           GAME STUDIO / APP DEVELOPMENT
         </p>
 
         <h1>
-
-          <span>
-            BREAK THE
-          </span>
-
-          <strong>
-            RED<span>ZONE</span>
-          </strong>
-
+          <span>BREAK THE</span>
+          <strong>RED<span>ZONE</span></strong>
         </h1>
 
         <p class="hero-ja">
@@ -1966,22 +140,203 @@
       </div>
 
 
-      <div class="hero-visual">
 
-        <div class="hero-ring one"></div>
-        <div class="hero-ring two"></div>
-        <div class="hero-ring three"></div>
+      <!-- =================================================
+           REDZONE TACHOMETER
+           ================================================= -->
 
-        <div class="core-logo">
-          R<span>Z</span>
+      <div
+        class="hero-visual reveal delay-1"
+        id="heroGauge"
+      >
+
+        <div class="gauge-shell">
+
+          <div class="gauge-ambient"></div>
+
+          <div class="gauge-outer-ring"></div>
+
+          <div class="gauge-tech-ring gauge-tech-ring-a"></div>
+          <div class="gauge-tech-ring gauge-tech-ring-b"></div>
+
+
+          <!-- RPM TICKS -->
+
+          <div class="gauge-ticks">
+
+            <i style="--i:0"></i>
+            <i style="--i:1"></i>
+            <i style="--i:2"></i>
+            <i style="--i:3"></i>
+            <i style="--i:4"></i>
+            <i style="--i:5"></i>
+            <i style="--i:6"></i>
+            <i style="--i:7"></i>
+            <i style="--i:8"></i>
+            <i style="--i:9"></i>
+            <i style="--i:10"></i>
+            <i style="--i:11"></i>
+            <i style="--i:12"></i>
+            <i style="--i:13"></i>
+            <i style="--i:14"></i>
+            <i style="--i:15"></i>
+            <i style="--i:16"></i>
+            <i style="--i:17"></i>
+            <i style="--i:18"></i>
+            <i style="--i:19"></i>
+            <i style="--i:20"></i>
+            <i style="--i:21"></i>
+            <i style="--i:22"></i>
+            <i style="--i:23"></i>
+            <i style="--i:24"></i>
+            <i style="--i:25"></i>
+            <i style="--i:26"></i>
+            <i style="--i:27"></i>
+            <i style="--i:28"></i>
+            <i style="--i:29"></i>
+            <i style="--i:30"></i>
+            <i style="--i:31"></i>
+            <i style="--i:32"></i>
+            <i style="--i:33"></i>
+            <i style="--i:34"></i>
+            <i style="--i:35"></i>
+            <i style="--i:36"></i>
+            <i style="--i:37"></i>
+            <i style="--i:38"></i>
+            <i style="--i:39"></i>
+            <i style="--i:40"></i>
+            <i style="--i:41"></i>
+            <i style="--i:42"></i>
+            <i style="--i:43"></i>
+            <i style="--i:44"></i>
+            <i style="--i:45"></i>
+            <i style="--i:46"></i>
+            <i style="--i:47"></i>
+
+          </div>
+
+
+          <!-- REDLINE -->
+
+          <div class="gauge-redline"></div>
+
+
+          <!-- RPM NUMBERS -->
+
+          <div class="rpm-number rpm-0">0</div>
+          <div class="rpm-number rpm-1">1</div>
+          <div class="rpm-number rpm-2">2</div>
+          <div class="rpm-number rpm-3">3</div>
+          <div class="rpm-number rpm-4">4</div>
+          <div class="rpm-number rpm-5">5</div>
+          <div class="rpm-number rpm-6">6</div>
+          <div class="rpm-number rpm-7 red">7</div>
+          <div class="rpm-number rpm-8 red">8</div>
+          <div class="rpm-number rpm-9 red">9</div>
+
+
+          <!-- NEEDLE -->
+
+          <div class="gauge-needle-wrap">
+
+            <div class="gauge-needle"></div>
+
+          </div>
+
+
+          <div class="gauge-center">
+
+            <div class="gauge-hub"></div>
+
+          </div>
+
+
+          <!-- DIGITAL DISPLAY -->
+
+          <div class="gauge-display">
+
+            <span class="gauge-display-label">
+              REDZONE ENGINE
+            </span>
+
+            <strong id="rpmValue">
+              0000
+            </strong>
+
+            <small>
+              RPM
+            </small>
+
+          </div>
+
+
+          <!-- CENTER LOGO -->
+
+          <div class="gauge-rz">
+            <span>R</span><b>Z</b>
+          </div>
+
+
+          <div class="gauge-subtitle">
+            GAME STUDIO
+          </div>
+
+
+          <div class="gauge-status">
+
+            <span class="gauge-status-dot"></span>
+
+            SYSTEM ACTIVE
+
+          </div>
+
+
+          <div class="gauge-redzone-text">
+            RED ZONE
+          </div>
+
+
+          <div class="gauge-scan"></div>
+
         </div>
+
+
+        <div class="gauge-caption">
+
+          <span>
+            PERFORMANCE
+          </span>
+
+          <b>
+            RZ // 09
+          </b>
+
+          <span>
+            LIMIT BREAK
+          </span>
+
+        </div>
+
+      </div>
+
+
+      <div class="hero-status">
+
+        <span class="pulse"></span>
+
+        <span>
+          REDZONE // ACTIVE DEVELOPMENT
+        </span>
 
       </div>
 
     </section>
 
 
-    <!-- TICKER -->
+
+    <!-- =====================================================
+         TICKER
+         ===================================================== -->
 
     <section class="ticker">
 
@@ -2004,14 +359,17 @@
     </section>
 
 
-    <!-- ABOUT -->
+
+    <!-- =====================================================
+         ABOUT
+         ===================================================== -->
 
     <section
-      class="section"
+      class="section about"
       id="about"
     >
 
-      <div class="section-head">
+      <div class="section-head reveal">
 
         <p class="eyebrow">
           ABOUT US
@@ -2033,7 +391,7 @@
 
       <div class="principles">
 
-        <article class="principle">
+        <article class="principle reveal">
 
           <span>01</span>
 
@@ -2049,7 +407,7 @@
         </article>
 
 
-        <article class="principle">
+        <article class="principle reveal delay-1">
 
           <span>02</span>
 
@@ -2058,15 +416,14 @@
           </h3>
 
           <p>
-            触った瞬間から、
-            ちょっと楽しい。
+            触った瞬間から、ちょっと楽しい。
             その感覚を大切にする。
           </p>
 
         </article>
 
 
-        <article class="principle">
+        <article class="principle reveal delay-2">
 
           <span>03</span>
 
@@ -2076,8 +433,7 @@
 
           <p>
             完成で終わらない。
-            使いながら、
-            遊びながら、
+            使いながら、遊びながら、
             もっと良くする。
           </p>
 
@@ -2088,14 +444,17 @@
     </section>
 
 
-    <!-- PROJECTS -->
+
+    <!-- =====================================================
+         PROJECTS
+         ===================================================== -->
 
     <section
-      class="section"
+      class="section projects"
       id="projects"
     >
 
-      <div class="section-title-row">
+      <div class="section-title-row reveal">
 
         <div>
 
@@ -2116,7 +475,11 @@
       </div>
 
 
-      <article class="project-card lifebase">
+
+      <!-- LIFE BASE -->
+
+      <article class="project-card lifebase reveal">
+
 
         <div class="project-visual-real">
 
@@ -2124,6 +487,7 @@
             class="project-carousel"
             id="projectCarousel"
           >
+
 
             <button
               class="carousel-arrow carousel-prev"
@@ -2247,6 +611,7 @@
         </div>
 
 
+
         <div class="project-copy">
 
           <p class="project-index">
@@ -2259,18 +624,19 @@
 
           <p>
             予定・仕事・収支など、
-            毎日の情報をひとつにまとめる
-            ライフサポートアプリ。
+            毎日の情報をひとつにまとめるライフサポートアプリ。
             「管理するためのアプリ」ではなく、
             生活のベースになる存在を目指して開発。
           </p>
 
 
           <div class="project-tags">
+
             <span>SCHEDULE</span>
             <span>WORK</span>
             <span>FINANCE</span>
             <span>LIFE</span>
+
           </div>
 
 
@@ -2287,66 +653,84 @@
       </article>
 
 
+
       <div class="project-grid">
 
-        <article class="project-card coming">
 
-          <p class="project-index">
-            PROJECT 002 / NEW GAME PROJECT
-          </p>
+        <article class="project-card coming reveal">
 
-          <span class="classified">
-            CLASSIFIED
-          </span>
+          <div class="project-copy">
 
-          <h3>
-            COMING<br>
-            SOON
-          </h3>
+            <p class="project-index">
+              PROJECT 002 / NEW GAME PROJECT
+            </p>
 
-          <p>
-            新作ゲームプロジェクト進行中。<br>
-            詳細は、まだ秘密。
-          </p>
+            <span class="classified">
+              CLASSIFIED
+            </span>
+
+            <h3>
+              COMING<br>
+              SOON
+            </h3>
+
+            <p>
+              新作ゲームプロジェクト進行中。<br>
+              詳細は、まだ秘密。
+            </p>
+
+          </div>
 
         </article>
 
 
-        <article class="project-card next">
+
+        <article class="project-card next reveal delay-1">
 
           <div class="plus">
             +
           </div>
 
-          <p class="project-index">
-            PROJECT 003+ / NEXT
-          </p>
+          <div class="project-copy">
 
-          <h3>
-            NEXT<br>
-            PROJECT
-          </h3>
+            <p class="project-index">
+              PROJECT 003+ / NEXT
+            </p>
 
-          <p>
-            ゲームだけじゃない。<br>
-            次のアプリも、次のアイデアもREDZONEから。
-          </p>
+            <h3>
+              NEXT<br>
+              PROJECT
+            </h3>
+
+            <p>
+              ゲームだけじゃない。<br>
+              次のアプリも、次のアイデアもREDZONEから。
+            </p>
+
+          </div>
 
         </article>
+
 
       </div>
 
     </section>
 
 
-    <!-- CREATOR -->
+
+    <!-- =====================================================
+         CREATOR
+         ===================================================== -->
 
     <section
       class="creator"
       id="creator"
     >
 
-      <div class="creator-inner">
+      <div
+        class="creator-inner reveal"
+        id="creatorMotion"
+      >
 
         <div class="creator-copy">
 
@@ -2382,36 +766,45 @@
         </div>
 
 
-        <div class="creator-visual">
 
-          <div class="creator-ring creator-ring-outer"></div>
-          <div class="creator-ring creator-ring-main"></div>
-          <div class="creator-ring creator-ring-inner"></div>
+        <div class="creator-stage">
+
+          <div class="creator-visual">
+
+            <div class="creator-ring creator-ring-outer"></div>
+            <div class="creator-ring creator-ring-main"></div>
+            <div class="creator-ring creator-ring-inner"></div>
 
 
-          <div class="creator-character-frame">
+            <div class="creator-character-wrap">
 
-            <img
-              src="./assets/mar-streamer.webp"
-              alt="マーのゲーム配信キャラクター"
-              class="creator-character"
-            >
+              <div class="creator-character-frame">
+
+                <img
+                  src="./assets/mar-streamer.webp"
+                  alt="マーのゲーム配信キャラクター"
+                  class="creator-character"
+                >
+
+              </div>
+
+            </div>
+
+
+            <span class="creator-stream-text stream-top">
+              NOW STREAMING
+            </span>
+
+            <span class="creator-stream-text stream-bottom">
+              NOW STREAMING
+            </span>
+
+
+            <span class="creator-live-dot live-dot-1"></span>
+            <span class="creator-live-dot live-dot-2"></span>
+            <span class="creator-live-dot live-dot-3"></span>
 
           </div>
-
-
-          <span class="creator-stream-text stream-top">
-            NOW STREAMING
-          </span>
-
-          <span class="creator-stream-text stream-bottom">
-            NOW STREAMING
-          </span>
-
-
-          <span class="creator-live-dot live-dot-1"></span>
-          <span class="creator-live-dot live-dot-2"></span>
-          <span class="creator-live-dot live-dot-3"></span>
 
         </div>
 
@@ -2436,25 +829,36 @@
     </section>
 
 
-    <!-- NEWS -->
+
+    <!-- =====================================================
+         NEWS
+         ===================================================== -->
 
     <section
-      class="section"
+      class="section news"
       id="news"
     >
 
-      <p class="eyebrow">
-        NEWS / UPDATE
-      </p>
+      <div class="section-title-row reveal">
 
-      <h2>
-        WHAT'S NEXT.
-      </h2>
+        <div>
+
+          <p class="eyebrow">
+            NEWS / UPDATE
+          </p>
+
+          <h2>
+            WHAT'S NEXT.
+          </h2>
+
+        </div>
+
+      </div>
 
 
       <div class="news-list">
 
-        <article class="news-item">
+        <article class="news-item reveal">
 
           <time>
             2026.08
@@ -2473,7 +877,7 @@
         </article>
 
 
-        <article class="news-item">
+        <article class="news-item reveal delay-1">
 
           <time>
             COMING
@@ -2496,14 +900,17 @@
     </section>
 
 
-    <!-- CONTACT -->
+
+    <!-- =====================================================
+         CONTACT
+         ===================================================== -->
 
     <section
       class="contact"
       id="contact"
     >
 
-      <div class="contact-inner">
+      <div class="contact-inner reveal">
 
         <p class="eyebrow">
           CONTACT / SUPPORT
@@ -2548,14 +955,17 @@
     </section>
 
 
-    <!-- INFORMATION -->
+
+    <!-- =====================================================
+         INFORMATION
+         ===================================================== -->
 
     <section
       class="information"
       id="information"
     >
 
-      <div class="information-head">
+      <div class="information-head reveal">
 
         <p class="eyebrow">
           REDZONE / INFORMATION
@@ -2571,7 +981,7 @@
       <div class="information-grid">
 
 
-        <!-- PRIVACY POLICY -->
+        <!-- PRIVACY -->
 
         <details class="legal-card">
 
@@ -2594,28 +1004,25 @@
               利用者情報を適切に取り扱います。
             </p>
 
-
             <h3>
               1. 取得する情報
             </h3>
 
             <p>
               本サイトでは、サイトの運営・改善・安全性確認等のため、
-              アクセス日時、利用端末、ブラウザ情報等が、
+              アクセス日時、利用端末、ブラウザ情報等が
               サーバーまたは利用サービス側で記録される場合があります。
             </p>
 
-
             <h3>
-              2. お問い合わせフォームで取得する情報
+              2. お問い合わせフォーム
             </h3>
 
             <p>
               お問い合わせフォームを通じて、
-              お名前、メールアドレス、お問い合わせ内容等を
-              取得する場合があります。
+              お名前、メールアドレス、
+              お問い合わせ内容等を取得する場合があります。
             </p>
-
 
             <h3>
               3. 利用目的
@@ -2628,7 +1035,6 @@
               必要な連絡のために利用します。
             </p>
 
-
             <h3>
               4. 第三者への提供
             </h3>
@@ -2638,54 +1044,29 @@
               ご本人の同意なく個人情報を第三者へ提供しません。
             </p>
 
-
             <h3>
-              5. Googleフォームの利用
+              5. Googleフォーム
             </h3>
 
             <p>
-              当スタジオのお問い合わせフォームには
-              Googleフォームを利用しています。
+              お問い合わせにはGoogleフォームを利用しています。
               Googleによる情報の取り扱いについては、
-              Googleが定める利用規約および
-              プライバシーポリシーをご確認ください。
+              Googleが定める規約をご確認ください。
             </p>
 
-
             <h3>
-              6. 外部サービス
+              6. 本ポリシーの変更
             </h3>
 
             <p>
-              本サイトにはYouTube、Google、GitHub等の
-              外部サービスへのリンクが含まれる場合があります。
-              外部サービス上での情報の取り扱いについては、
-              各サービスの規約をご確認ください。
-            </p>
-
-
-            <h3>
-              7. REDZONEが提供するアプリ
-            </h3>
-
-            <p>
-              各アプリについて個別のプライバシーポリシーを定める場合は、
-              アプリ内、配布ページまたは公式案内ページ等に掲載します。
-            </p>
-
-
-            <h3>
-              8. 本ポリシーの変更
-            </h3>
-
-            <p>
-              法令、サービス内容その他の変更に応じ、
+              法令やサービス内容の変更等に応じ、
               本ポリシーを必要に応じて変更する場合があります。
             </p>
 
           </div>
 
         </details>
+
 
 
         <!-- TERMS -->
@@ -2715,7 +1096,6 @@
               開発状況等により予告なく変更される場合があります。
             </p>
 
-
             <h3>
               免責事項
             </h3>
@@ -2727,7 +1107,6 @@
               当スタジオは責任を負いません。
             </p>
 
-
             <h3>
               著作権・知的財産権
             </h3>
@@ -2738,20 +1117,10 @@
               当スタジオまたは正当な権利者に帰属します。
             </p>
 
-
-            <h3>
-              無断利用
-            </h3>
-
-            <p>
-              法令で認められる場合を除き、
-              本サイトのコンテンツを無断で転載、
-              複製、再配布することはご遠慮ください。
-            </p>
-
           </div>
 
         </details>
+
 
 
         <!-- CONTACT -->
@@ -2808,7 +1177,6 @@
   </main>
 
 
-  <!-- SIMPLE BOTTOM -->
 
   <div class="site-bottom">
 
@@ -2817,377 +1185,14 @@
     </span>
 
     <span>
-      © <span class="current-year"></span>
+      © <span id="year"></span>
       GAME STUDIO REDZONE
     </span>
 
   </div>
 
 
-  <script>
-
-    /* MENU */
-
-    const nav =
-      document.getElementById("nav");
-
-    const toggle =
-      document.getElementById("menuToggle");
-
-
-    if(nav && toggle){
-
-      toggle.addEventListener(
-        "click",
-        () => {
-
-          const open =
-            nav.classList.toggle("open");
-
-          toggle.setAttribute(
-            "aria-expanded",
-            String(open)
-          );
-
-        }
-      );
-
-
-      document
-        .querySelectorAll(".nav a")
-        .forEach(link => {
-
-          link.addEventListener(
-            "click",
-            () => {
-
-              nav.classList.remove("open");
-
-              toggle.setAttribute(
-                "aria-expanded",
-                "false"
-              );
-
-            }
-          );
-
-        });
-
-    }
-
-
-    /* YEAR */
-
-    document
-      .querySelectorAll(".current-year")
-      .forEach(element => {
-
-        element.textContent =
-          new Date().getFullYear();
-
-      });
-
-
-    /* CAROUSEL */
-
-    const carousel =
-      document.getElementById(
-        "projectCarousel"
-      );
-
-
-    if(carousel){
-
-      const viewport =
-        carousel.querySelector(
-          ".carousel-viewport"
-        );
-
-      const track =
-        carousel.querySelector(
-          ".carousel-track"
-        );
-
-      const slides =
-        Array.from(
-          carousel.querySelectorAll(
-            ".carousel-slide"
-          )
-        );
-
-      const dots =
-        Array.from(
-          carousel.querySelectorAll(
-            ".carousel-dot"
-          )
-        );
-
-      const prev =
-        carousel.querySelector(
-          ".carousel-prev"
-        );
-
-      const next =
-        carousel.querySelector(
-          ".carousel-next"
-        );
-
-
-      let index = 0;
-
-      let startX = null;
-
-      let timer = null;
-
-
-      function showSlide(newIndex){
-
-        if(
-          !track ||
-          slides.length === 0
-        ){
-          return;
-        }
-
-
-        index =
-          (
-            newIndex +
-            slides.length
-          )
-          %
-          slides.length;
-
-
-        track.style.transform =
-          `translate3d(-${index * 100}%,0,0)`;
-
-
-        dots.forEach(
-          (dot,dotIndex) => {
-
-            dot.classList.toggle(
-              "active",
-              dotIndex === index
-            );
-
-          }
-        );
-
-      }
-
-
-      function nextSlide(){
-
-        showSlide(
-          index + 1
-        );
-
-      }
-
-
-      function prevSlide(){
-
-        showSlide(
-          index - 1
-        );
-
-      }
-
-
-      function stopAuto(){
-
-        if(timer){
-
-          clearInterval(timer);
-
-          timer = null;
-
-        }
-
-      }
-
-
-      function startAuto(){
-
-        stopAuto();
-
-
-        timer =
-          setInterval(
-            nextSlide,
-            3500
-          );
-
-      }
-
-
-      if(prev){
-
-        prev.addEventListener(
-          "click",
-          () => {
-
-            prevSlide();
-
-            startAuto();
-
-          }
-        );
-
-      }
-
-
-      if(next){
-
-        next.addEventListener(
-          "click",
-          () => {
-
-            nextSlide();
-
-            startAuto();
-
-          }
-        );
-
-      }
-
-
-      dots.forEach(
-        (dot,dotIndex) => {
-
-          dot.addEventListener(
-            "click",
-            () => {
-
-              showSlide(
-                dotIndex
-              );
-
-              startAuto();
-
-            }
-          );
-
-        }
-      );
-
-
-      if(viewport){
-
-        viewport.addEventListener(
-          "pointerdown",
-          event => {
-
-            startX =
-              event.clientX;
-
-
-            if(
-              viewport.setPointerCapture
-            ){
-
-              viewport.setPointerCapture(
-                event.pointerId
-              );
-
-            }
-
-          }
-        );
-
-
-        viewport.addEventListener(
-          "pointerup",
-          event => {
-
-            if(
-              startX === null
-            ){
-              return;
-            }
-
-
-            const diff =
-              event.clientX -
-              startX;
-
-
-            if(
-              Math.abs(diff) > 40
-            ){
-
-              if(
-                diff < 0
-              ){
-
-                nextSlide();
-
-              }
-
-              else{
-
-                prevSlide();
-
-              }
-
-            }
-
-
-            startX = null;
-
-
-            startAuto();
-
-          }
-        );
-
-
-        viewport.addEventListener(
-          "pointercancel",
-          () => {
-
-            startX = null;
-
-            startAuto();
-
-          }
-        );
-
-      }
-
-
-      document.addEventListener(
-        "visibilitychange",
-        () => {
-
-          if(
-            document.hidden
-          ){
-
-            stopAuto();
-
-          }
-
-          else{
-
-            startAuto();
-
-          }
-
-        }
-      );
-
-
-      showSlide(0);
-
-      startAuto();
-
-    }
-
-  </script>
+  <script src="./js/main.js?v=30"></script>
 
 </body>
-
 </html>
