@@ -17,23 +17,17 @@ if (toggle && nav) {
     );
   });
 
-
   document.querySelectorAll('.nav a').forEach(link => {
-
     link.addEventListener('click', () => {
-
       nav.classList.remove('open');
 
       toggle.setAttribute(
         'aria-expanded',
         'false'
       );
-
     });
-
   });
 }
-
 
 
 // ==============================
@@ -42,32 +36,22 @@ if (toggle && nav) {
 
 const observer = new IntersectionObserver(
   (entries) => {
-
     entries.forEach(entry => {
-
       if (entry.isIntersecting) {
-
         entry.target.classList.add('visible');
-
       }
-
     });
-
   },
   {
     threshold: 0.12
   }
 );
 
-
 document
   .querySelectorAll('.reveal')
   .forEach(el => {
-
     observer.observe(el);
-
   });
-
 
 
 // ==============================
@@ -75,11 +59,9 @@ document
 // ==============================
 
 if (glow) {
-
   window.addEventListener(
     'mousemove',
     (e) => {
-
       glow.style.left =
         e.clientX + 'px';
 
@@ -87,12 +69,9 @@ if (glow) {
         e.clientY + 'px';
 
       glow.style.opacity = '1';
-
     }
   );
-
 }
-
 
 
 // ==============================
@@ -102,14 +81,10 @@ if (glow) {
 const year =
   document.getElementById('year');
 
-
 if (year) {
-
   year.textContent =
     new Date().getFullYear();
-
 }
-
 
 
 // ==============================
@@ -122,19 +97,13 @@ const hero =
 const visual =
   document.querySelector('.hero-visual');
 
-
 if (hero && visual) {
-
   hero.addEventListener(
     'mousemove',
     (e) => {
-
-      if (
-        window.innerWidth < 1000
-      ) {
+      if (window.innerWidth < 1000) {
         return;
       }
-
 
       const x =
         (
@@ -142,10 +111,7 @@ if (hero && visual) {
           window.innerWidth
           -
           0.5
-        )
-        *
-        14;
-
+        ) * 14;
 
       const y =
         (
@@ -153,30 +119,21 @@ if (hero && visual) {
           window.innerHeight
           -
           0.5
-        )
-        *
-        14;
-
+        ) * 14;
 
       visual.style.transform =
         `translate(${x}px, ${y}px)`;
-
     }
   );
-
 
   hero.addEventListener(
     'mouseleave',
     () => {
-
       visual.style.transform =
         'translate(0,0)';
-
     }
   );
-
 }
-
 
 
 // ==============================
@@ -189,20 +146,16 @@ const carousel =
     'projectCarousel'
   );
 
-
 if (carousel) {
-
   const viewport =
     carousel.querySelector(
       '.carousel-viewport'
     );
 
-
   const track =
     carousel.querySelector(
       '.carousel-track'
     );
-
 
   const slides =
     Array.from(
@@ -211,7 +164,6 @@ if (carousel) {
       )
     );
 
-
   const dots =
     Array.from(
       carousel.querySelectorAll(
@@ -219,61 +171,49 @@ if (carousel) {
       )
     );
 
-
   const prev =
     carousel.querySelector(
       '.carousel-prev'
     );
-
 
   const next =
     carousel.querySelector(
       '.carousel-next'
     );
 
-
   if (
     viewport &&
     track &&
     slides.length > 0
   ) {
-
     let index = 0;
-
     let startX = null;
+    let autoSlideTimer = null;
 
 
-
-    // --------------------------
+    // ==============================
     // SLIDE DISPLAY
-    // --------------------------
+    // ==============================
 
     const showSlide = (
       newIndex
     ) => {
-
       index =
         (
-          newIndex
-          +
+          newIndex +
           slides.length
-        )
-        %
+        ) %
         slides.length;
-
 
       track.style.transform =
         `translate3d(-${index * 100}%, 0, 0)`;
 
-
       dots.forEach(
         (dot, dotIndex) => {
-
           dot.classList.toggle(
             'active',
             dotIndex === index
           );
-
 
           dot.setAttribute(
             'aria-current',
@@ -281,204 +221,239 @@ if (carousel) {
               ? 'true'
               : 'false'
           );
-
         }
       );
-
     };
 
 
+    // ==============================
+    // AUTO SLIDE
+    // ==============================
 
-    // --------------------------
-    // LEFT / RIGHT BUTTON
-    // --------------------------
+    const stopAutoSlide = () => {
+      if (autoSlideTimer) {
+        clearInterval(
+          autoSlideTimer
+        );
+
+        autoSlideTimer = null;
+      }
+    };
+
+    const startAutoSlide = () => {
+      stopAutoSlide();
+
+      autoSlideTimer =
+        setInterval(
+          () => {
+            showSlide(
+              index + 1
+            );
+          },
+          4000
+        );
+    };
+
+
+    // ==============================
+    // BUTTONS
+    // ==============================
 
     if (prev) {
-
       prev.addEventListener(
         'click',
         () => {
-
           showSlide(
             index - 1
           );
 
+          startAutoSlide();
         }
       );
-
     }
 
-
     if (next) {
-
       next.addEventListener(
         'click',
         () => {
-
           showSlide(
             index + 1
           );
 
+          startAutoSlide();
         }
       );
-
     }
 
 
-
-    // --------------------------
-    // DOT BUTTON
-    // --------------------------
+    // ==============================
+    // DOT BUTTONS
+    // ==============================
 
     dots.forEach(
       (dot, dotIndex) => {
-
         dot.addEventListener(
           'click',
           () => {
-
             showSlide(
               dotIndex
             );
 
+            startAutoSlide();
           }
         );
-
       }
     );
 
 
-
-    // --------------------------
+    // ==============================
     // TOUCH / MOUSE SWIPE
-    // --------------------------
+    // ==============================
 
     viewport.addEventListener(
       'pointerdown',
       (e) => {
-
         startX =
           e.clientX;
 
+        stopAutoSlide();
 
         if (
           viewport.setPointerCapture
         ) {
-
           viewport.setPointerCapture(
             e.pointerId
           );
-
         }
-
       }
     );
-
 
     viewport.addEventListener(
       'pointerup',
       (e) => {
-
         if (
           startX === null
         ) {
+          startAutoSlide();
           return;
         }
 
-
         const diff =
-          e.clientX - startX;
-
+          e.clientX -
+          startX;
 
         if (
           Math.abs(diff) >= 45
         ) {
-
           if (
             diff < 0
           ) {
-
             showSlide(
               index + 1
             );
-
-          }
-          else {
-
+          } else {
             showSlide(
               index - 1
             );
-
           }
-
         }
-
 
         startX = null;
 
+        startAutoSlide();
       }
     );
-
 
     viewport.addEventListener(
       'pointercancel',
       () => {
-
         startX = null;
 
+        startAutoSlide();
       }
     );
 
 
+    // ==============================
+    // PAUSE ON HOVER
+    // ==============================
 
-    // --------------------------
+    carousel.addEventListener(
+      'mouseenter',
+      () => {
+        stopAutoSlide();
+      }
+    );
+
+    carousel.addEventListener(
+      'mouseleave',
+      () => {
+        startAutoSlide();
+      }
+    );
+
+
+    // ==============================
     // KEYBOARD
-    // --------------------------
+    // ==============================
 
     carousel.setAttribute(
       'tabindex',
       '0'
     );
 
-
     carousel.addEventListener(
       'keydown',
       (e) => {
-
         if (
           e.key ===
           'ArrowLeft'
         ) {
-
           showSlide(
             index - 1
           );
 
+          startAutoSlide();
         }
-
 
         if (
           e.key ===
           'ArrowRight'
         ) {
-
           showSlide(
             index + 1
           );
 
+          startAutoSlide();
         }
-
       }
     );
 
 
+    // ==============================
+    // TAB / WINDOW VISIBILITY
+    // ==============================
 
-    // --------------------------
-    // FIRST SLIDE
-    // --------------------------
+    document.addEventListener(
+      'visibilitychange',
+      () => {
+        if (
+          document.hidden
+        ) {
+          stopAutoSlide();
+        } else {
+          startAutoSlide();
+        }
+      }
+    );
+
+
+    // ==============================
+    // INITIAL
+    // ==============================
 
     showSlide(0);
 
+    startAutoSlide();
   }
-
 }
