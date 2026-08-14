@@ -505,3 +505,312 @@ a{color:inherit;text-decoration:none}
   .carousel-viewport{height:470px}
   .carousel-panel{width:198px;height:470px;max-width:78%}
 }
+
+
+/* =========================================================
+   CREATOR / MAR STREAMING MOTION
+   ========================================================= */
+
+.creator{
+  padding:0 clamp(22px,4vw,68px) 120px;
+}
+
+.creator-inner.creator-motion{
+  max-width:calc(var(--max) - 136px);
+  margin:auto;
+  position:relative;
+  overflow:hidden;
+  min-height:560px;
+  padding:72px;
+  display:grid;
+  grid-template-columns:minmax(0,.92fr) minmax(420px,1.08fr);
+  align-items:center;
+  gap:34px;
+  border:1px solid rgba(255,31,45,.34);
+  background:
+    radial-gradient(circle at 78% 48%,rgba(255,31,45,.17),transparent 28%),
+    linear-gradient(105deg,rgba(7,7,9,.99) 0%,rgba(7,7,9,.94) 48%,rgba(11,3,5,.90) 100%);
+  isolation:isolate;
+}
+
+.creator-inner.creator-motion:before{
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:
+    linear-gradient(120deg,transparent 0 48%,rgba(255,31,45,.04) 48% 49%,transparent 49% 100%),
+    repeating-linear-gradient(90deg,transparent 0 42px,rgba(255,255,255,.018) 42px 43px);
+  opacity:.55;
+  z-index:-1;
+}
+
+.creator-speed-lines{
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  opacity:.23;
+  background:
+    repeating-linear-gradient(
+      132deg,
+      transparent 0 58px,
+      rgba(255,31,45,.24) 58px 59px,
+      transparent 59px 116px
+    );
+  animation:creatorLines 9s linear infinite;
+}
+
+@keyframes creatorLines{
+  from{background-position:0 0}
+  to{background-position:220px 0}
+}
+
+.creator-copy{
+  position:relative;
+  z-index:5;
+  max-width:660px;
+}
+
+.creator-copy h2{
+  margin:0;
+  font:900 clamp(58px,6.8vw,104px)/.88 "Barlow Condensed","Noto Sans JP",sans-serif;
+  letter-spacing:-.035em;
+}
+
+.creator-channel{
+  display:inline-block;
+  margin-top:14px;
+  color:var(--red);
+  font-size:.34em;
+  letter-spacing:.36em;
+  transform:translateX(4px);
+}
+
+.creator-copy>p:not(.eyebrow){
+  color:#aaaab1;
+  line-height:1.9;
+  margin:24px 0 0;
+}
+
+.creator-btn{
+  margin-top:34px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:0 0 30px rgba(255,31,45,.20);
+}
+
+.creator-btn:before{
+  content:"";
+  position:absolute;
+  top:-20%;
+  left:-45%;
+  width:28%;
+  height:140%;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.48),transparent);
+  transform:skewX(-22deg);
+  animation:creatorButtonSweep 3.2s ease-in-out infinite;
+}
+
+@keyframes creatorButtonSweep{
+  0%,55%{left:-45%}
+  78%,100%{left:125%}
+}
+
+.creator-stage{
+  position:relative;
+  width:min(100%,620px);
+  aspect-ratio:1;
+  justify-self:end;
+  display:grid;
+  place-items:center;
+  transform-style:preserve-3d;
+  z-index:4;
+}
+
+.creator-character-wrap{
+  position:relative;
+  z-index:5;
+  width:72%;
+  aspect-ratio:1;
+  border-radius:50%;
+  overflow:hidden;
+  background:#050507;
+  box-shadow:
+    0 0 0 1px rgba(255,255,255,.11),
+    0 0 52px rgba(255,31,45,.22);
+  animation:creatorFloat 4.2s ease-in-out infinite;
+}
+
+.creator-character{
+  width:100%;
+  height:100%;
+  display:block;
+  object-fit:cover;
+  transform:scale(1.035);
+}
+
+@keyframes creatorFloat{
+  0%,100%{transform:translateY(0) scale(1)}
+  50%{transform:translateY(-10px) scale(1.012)}
+}
+
+.creator-ring{
+  position:absolute;
+  border-radius:50%;
+  pointer-events:none;
+}
+
+.creator-ring-a{
+  width:82%;
+  height:82%;
+  border:4px solid transparent;
+  background:
+    linear-gradient(#08080a,#08080a) padding-box,
+    conic-gradient(
+      from 0deg,
+      transparent 0 8%,
+      #fff 8% 15%,
+      var(--red) 15% 30%,
+      transparent 30% 43%,
+      var(--red) 43% 64%,
+      #fff 64% 72%,
+      transparent 72% 88%,
+      var(--red) 88% 100%
+    ) border-box;
+  filter:drop-shadow(0 0 10px rgba(255,31,45,.50));
+  animation:creatorSpin 8s linear infinite;
+}
+
+.creator-ring-b{
+  width:94%;
+  height:94%;
+  border:1px dashed rgba(255,31,45,.44);
+  box-shadow:inset 0 0 40px rgba(255,31,45,.06);
+  animation:creatorSpin 18s linear infinite reverse;
+}
+
+.creator-ring-c{
+  width:104%;
+  height:104%;
+  border:1px solid rgba(255,31,45,.14);
+  animation:creatorBreath 2.8s ease-in-out infinite;
+}
+
+@keyframes creatorSpin{
+  to{transform:rotate(360deg)}
+}
+
+@keyframes creatorBreath{
+  0%,100%{transform:scale(.985);opacity:.35}
+  50%{transform:scale(1.02);opacity:.9}
+}
+
+.creator-pulse-dot{
+  position:absolute;
+  z-index:6;
+  width:10px;
+  height:10px;
+  border-radius:50%;
+  background:var(--red);
+  box-shadow:0 0 18px var(--red);
+  animation:creatorDot 1.4s ease-in-out infinite alternate;
+}
+
+.dot-a{left:8%;top:42%}
+.dot-b{right:7%;top:29%;animation-delay:.4s}
+.dot-c{right:17%;bottom:8%;animation-delay:.8s}
+
+@keyframes creatorDot{
+  to{opacity:.22;transform:scale(.55)}
+}
+
+.creator-live-label{
+  position:absolute;
+  z-index:7;
+  top:11%;
+  left:7%;
+  color:#fff;
+  font:700 11px "Barlow Condensed",sans-serif;
+  letter-spacing:.38em;
+  transform:rotate(-35deg);
+  text-shadow:0 0 12px rgba(255,31,45,.8);
+}
+
+.creator-live-label-bottom{
+  top:auto;
+  left:auto;
+  right:8%;
+  bottom:10%;
+  transform:rotate(-35deg);
+}
+
+.creator-mark{
+  position:absolute;
+  right:4%;
+  top:10%;
+  z-index:0;
+  font:900 clamp(170px,19vw,310px) "Barlow Condensed",sans-serif;
+  color:rgba(255,255,255,.025);
+  transform:skewX(-8deg);
+  pointer-events:none;
+}
+
+.creator-kicker{
+  position:absolute;
+  right:20px;
+  top:50%;
+  transform:translateY(-50%) rotate(90deg);
+  font:600 10px "Barlow Condensed",sans-serif;
+  letter-spacing:.36em;
+  color:#6f6f76;
+  z-index:7;
+}
+
+@media (max-width:1000px){
+  .creator-inner.creator-motion{
+    grid-template-columns:1fr;
+    padding:58px 40px;
+  }
+
+  .creator-stage{
+    justify-self:center;
+    width:min(100%,540px);
+  }
+
+  .creator-copy{
+    max-width:none;
+  }
+}
+
+@media (max-width:700px){
+  .creator{
+    padding:0 20px 90px;
+  }
+
+  .creator-inner.creator-motion{
+    padding:44px 22px 54px;
+    min-height:0;
+  }
+
+  .creator-copy h2{
+    font-size:clamp(52px,15vw,78px);
+  }
+
+  .creator-stage{
+    width:100%;
+    margin-top:18px;
+  }
+
+  .creator-character-wrap{
+    width:74%;
+  }
+
+  .creator-kicker{
+    display:none;
+  }
+
+  .creator-live-label{
+    font-size:9px;
+    letter-spacing:.28em;
+  }
+}
