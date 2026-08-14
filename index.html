@@ -1,22 +1,13 @@
 <!DOCTYPE html>
 <html lang="ja">
 <head>
-  <meta charset="UTF-8">
-
-  <meta
-    name="viewport"
-    content="width=device-width, initial-scale=1.0"
-  >
-
-  <meta
-    name="theme-color"
-    content="#050505"
-  >
-
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070707" />
   <meta
     name="description"
-    content="GAME STUDIO REDZONE — ゲーム・アプリ開発スタジオ"
-  >
+    content="GAME STUDIO REDZONE — ゲーム・アプリ開発スタジオ。LIFE BASEをはじめ、次の体験を形にしていきます。"
+  />
 
   <title>GAME STUDIO REDZONE</title>
 
@@ -28,7 +19,7 @@
     rel="stylesheet"
   >
 
-  <link rel="stylesheet" href="./css/style.css?v=30">
+  <link rel="stylesheet" href="css/style.css?v=5" />
 </head>
 
 <body>
@@ -37,30 +28,30 @@
   <div class="cursor-glow" id="cursorGlow"></div>
 
 
-  <!-- =====================================================
+  <!-- ==============================
        HEADER
-       ===================================================== -->
+  ============================== -->
 
   <header class="site-header" id="top">
 
-    <a class="brand" href="#top">
-
-      <span class="brand-mark">
-        RZ
-      </span>
+    <a
+      class="brand"
+      href="#top"
+      aria-label="REDZONE ホーム"
+    >
+      <span class="brand-mark">RZ</span>
 
       <span class="brand-copy">
         <b>REDZONE</b>
         <small>GAME STUDIO</small>
       </span>
-
     </a>
 
 
     <button
       class="menu-toggle"
       id="menuToggle"
-      aria-label="メニュー"
+      aria-label="メニューを開く"
       aria-expanded="false"
     >
       <span></span>
@@ -74,26 +65,24 @@
       <a href="#creator">CREATOR</a>
       <a href="#news">NEWS</a>
       <a href="#contact">CONTACT</a>
-      <a href="#information">INFO</a>
     </nav>
 
   </header>
 
 
-
   <main>
 
 
-    <!-- =====================================================
+    <!-- ==============================
          HERO
-         ===================================================== -->
+    ============================== -->
 
     <section class="hero">
 
       <div class="hero-grid"></div>
 
-      <div class="hero-orb hero-orb-a"></div>
-      <div class="hero-orb hero-orb-b"></div>
+      <div class="hero-orb orb-a"></div>
+      <div class="hero-orb orb-b"></div>
 
 
       <div class="hero-copy reveal">
@@ -104,7 +93,9 @@
 
         <h1>
           <span>BREAK THE</span>
-          <strong>RED<span>ZONE</span></strong>
+          <strong>
+            RED<span>ZONE</span>
+          </strong>
         </h1>
 
         <p class="hero-ja">
@@ -140,181 +131,23 @@
       </div>
 
 
-
-      <!-- =================================================
-           REDZONE TACHOMETER
-           ================================================= -->
+      <!-- 動くRZメーター -->
 
       <div
         class="hero-visual reveal delay-1"
-        id="heroGauge"
+        aria-hidden="true"
       >
 
-        <div class="gauge-shell">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
 
-          <div class="gauge-ambient"></div>
-
-          <div class="gauge-outer-ring"></div>
-
-          <div class="gauge-tech-ring gauge-tech-ring-a"></div>
-          <div class="gauge-tech-ring gauge-tech-ring-b"></div>
-
-
-          <!-- RPM TICKS -->
-
-          <div class="gauge-ticks">
-
-            <i style="--i:0"></i>
-            <i style="--i:1"></i>
-            <i style="--i:2"></i>
-            <i style="--i:3"></i>
-            <i style="--i:4"></i>
-            <i style="--i:5"></i>
-            <i style="--i:6"></i>
-            <i style="--i:7"></i>
-            <i style="--i:8"></i>
-            <i style="--i:9"></i>
-            <i style="--i:10"></i>
-            <i style="--i:11"></i>
-            <i style="--i:12"></i>
-            <i style="--i:13"></i>
-            <i style="--i:14"></i>
-            <i style="--i:15"></i>
-            <i style="--i:16"></i>
-            <i style="--i:17"></i>
-            <i style="--i:18"></i>
-            <i style="--i:19"></i>
-            <i style="--i:20"></i>
-            <i style="--i:21"></i>
-            <i style="--i:22"></i>
-            <i style="--i:23"></i>
-            <i style="--i:24"></i>
-            <i style="--i:25"></i>
-            <i style="--i:26"></i>
-            <i style="--i:27"></i>
-            <i style="--i:28"></i>
-            <i style="--i:29"></i>
-            <i style="--i:30"></i>
-            <i style="--i:31"></i>
-            <i style="--i:32"></i>
-            <i style="--i:33"></i>
-            <i style="--i:34"></i>
-            <i style="--i:35"></i>
-            <i style="--i:36"></i>
-            <i style="--i:37"></i>
-            <i style="--i:38"></i>
-            <i style="--i:39"></i>
-            <i style="--i:40"></i>
-            <i style="--i:41"></i>
-            <i style="--i:42"></i>
-            <i style="--i:43"></i>
-            <i style="--i:44"></i>
-            <i style="--i:45"></i>
-            <i style="--i:46"></i>
-            <i style="--i:47"></i>
-
-          </div>
-
-
-          <!-- REDLINE -->
-
-          <div class="gauge-redline"></div>
-
-
-          <!-- RPM NUMBERS -->
-
-          <div class="rpm-number rpm-0">0</div>
-          <div class="rpm-number rpm-1">1</div>
-          <div class="rpm-number rpm-2">2</div>
-          <div class="rpm-number rpm-3">3</div>
-          <div class="rpm-number rpm-4">4</div>
-          <div class="rpm-number rpm-5">5</div>
-          <div class="rpm-number rpm-6">6</div>
-          <div class="rpm-number rpm-7 red">7</div>
-          <div class="rpm-number rpm-8 red">8</div>
-          <div class="rpm-number rpm-9 red">9</div>
-
-
-          <!-- NEEDLE -->
-
-          <div class="gauge-needle-wrap">
-
-            <div class="gauge-needle"></div>
-
-          </div>
-
-
-          <div class="gauge-center">
-
-            <div class="gauge-hub"></div>
-
-          </div>
-
-
-          <!-- DIGITAL DISPLAY -->
-
-          <div class="gauge-display">
-
-            <span class="gauge-display-label">
-              REDZONE ENGINE
-            </span>
-
-            <strong id="rpmValue">
-              0000
-            </strong>
-
-            <small>
-              RPM
-            </small>
-
-          </div>
-
-
-          <!-- CENTER LOGO -->
-
-          <div class="gauge-rz">
-            <span>R</span><b>Z</b>
-          </div>
-
-
-          <div class="gauge-subtitle">
-            GAME STUDIO
-          </div>
-
-
-          <div class="gauge-status">
-
-            <span class="gauge-status-dot"></span>
-
-            SYSTEM ACTIVE
-
-          </div>
-
-
-          <div class="gauge-redzone-text">
-            RED ZONE
-          </div>
-
-
-          <div class="gauge-scan"></div>
-
+        <div class="core-logo">
+          R<span>Z</span>
         </div>
 
-
-        <div class="gauge-caption">
-
-          <span>
-            PERFORMANCE
-          </span>
-
-          <b>
-            RZ // 09
-          </b>
-
-          <span>
-            LIMIT BREAK
-          </span>
-
+        <div class="vertical-copy">
+          CREATE / PLAY / BUILD / REPEAT
         </div>
 
       </div>
@@ -334,25 +167,46 @@
 
 
 
-    <!-- =====================================================
+    <!-- ==============================
          TICKER
-         ===================================================== -->
+    ============================== -->
 
-    <section class="ticker">
+    <section
+      class="ticker"
+      aria-label="REDZONE keywords"
+    >
 
       <div class="ticker-track">
 
-        <span>GAME DEVELOPMENT</span><i>●</i>
-        <span>APP DEVELOPMENT</span><i>●</i>
-        <span>CREATIVE</span><i>●</i>
-        <span>FUN FIRST</span><i>●</i>
-        <span>KEEP BUILDING</span><i>●</i>
+        <span>GAME DEVELOPMENT</span>
+        <i>●</i>
 
-        <span>GAME DEVELOPMENT</span><i>●</i>
-        <span>APP DEVELOPMENT</span><i>●</i>
-        <span>CREATIVE</span><i>●</i>
-        <span>FUN FIRST</span><i>●</i>
-        <span>KEEP BUILDING</span><i>●</i>
+        <span>APP DEVELOPMENT</span>
+        <i>●</i>
+
+        <span>CREATIVE</span>
+        <i>●</i>
+
+        <span>FUN FIRST</span>
+        <i>●</i>
+
+        <span>KEEP BUILDING</span>
+        <i>●</i>
+
+        <span>GAME DEVELOPMENT</span>
+        <i>●</i>
+
+        <span>APP DEVELOPMENT</span>
+        <i>●</i>
+
+        <span>CREATIVE</span>
+        <i>●</i>
+
+        <span>FUN FIRST</span>
+        <i>●</i>
+
+        <span>KEEP BUILDING</span>
+        <i>●</i>
 
       </div>
 
@@ -360,9 +214,9 @@
 
 
 
-    <!-- =====================================================
+    <!-- ==============================
          ABOUT
-         ===================================================== -->
+    ============================== -->
 
     <section
       class="section about"
@@ -445,9 +299,9 @@
 
 
 
-    <!-- =====================================================
+    <!-- ==============================
          PROJECTS
-         ===================================================== -->
+    ============================== -->
 
     <section
       class="section projects"
@@ -469,22 +323,30 @@
         </div>
 
         <p class="section-note">
-          APPS, GAMES, AND THE NEXT PROJECT.
+          Apps, games, and the next project.
         </p>
 
       </div>
 
 
 
-      <!-- LIFE BASE -->
+      <!-- ============================
+           LIFE BASE
+      ============================ -->
 
-      <article class="project-card lifebase reveal">
+      <article
+        class="project-card lifebase reveal"
+      >
 
 
-        <div class="project-visual-real">
+        <!-- APP SCREEN -->
+
+        <div
+          class="project-visual project-visual-real"
+        >
 
           <div
-            class="project-carousel"
+            class="project-shot-frame project-carousel"
             id="projectCarousel"
           >
 
@@ -494,7 +356,7 @@
               type="button"
               aria-label="前の画面"
             >
-              ‹
+              ←
             </button>
 
 
@@ -503,61 +365,84 @@
               <div class="carousel-track">
 
 
+                <!-- 1 -->
+
                 <div class="carousel-slide">
 
-                  <div class="carousel-phone panel-1">
+                  <div
+                    class="carousel-panel panel-1"
+                  >
 
                     <img
-                      src="./assets/lifebase-showcase.png"
-                      alt="PACHI BASE 収支グラフ"
-                    >
+                      src="assets/lifebase-showcase.png"
+                      alt="PACHI BASE 今月の収支グラフ画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
 
                   </div>
 
                 </div>
 
 
+                <!-- 2 -->
+
                 <div class="carousel-slide">
 
-                  <div class="carousel-phone panel-2">
+                  <div
+                    class="carousel-panel panel-2"
+                  >
 
                     <img
-                      src="./assets/lifebase-showcase.png"
-                      alt="PACHI BASE 成績"
-                    >
+                      src="assets/lifebase-showcase.png"
+                      alt="PACHI BASE 今日・今月の成績画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
 
                   </div>
 
                 </div>
 
 
+                <!-- 3 -->
+
                 <div class="carousel-slide">
 
-                  <div class="carousel-phone panel-3">
+                  <div
+                    class="carousel-panel panel-3"
+                  >
 
                     <img
-                      src="./assets/lifebase-showcase.png"
-                      alt="LIFE BASE ホーム"
-                    >
+                      src="assets/lifebase-showcase.png"
+                      alt="LIFE BASE ホーム画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
 
                   </div>
 
                 </div>
 
 
+                <!-- 4 -->
+
                 <div class="carousel-slide">
 
-                  <div class="carousel-phone panel-4">
+                  <div
+                    class="carousel-panel panel-4"
+                  >
 
                     <img
-                      src="./assets/lifebase-showcase.png"
-                      alt="LIFE BASE 今月のまとめ"
-                    >
+                      src="assets/lifebase-showcase.png"
+                      alt="LIFE BASE 今月のまとめ画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
 
                   </div>
 
                 </div>
-
 
               </div>
 
@@ -569,11 +454,14 @@
               type="button"
               aria-label="次の画面"
             >
-              ›
+              →
             </button>
 
 
-            <div class="carousel-dots">
+            <div
+              class="carousel-dots"
+              aria-label="画面位置"
+            >
 
               <button
                 class="carousel-dot active"
@@ -612,6 +500,8 @@
 
 
 
+        <!-- LIFE BASE TEXT -->
+
         <div class="project-copy">
 
           <p class="project-index">
@@ -624,7 +514,8 @@
 
           <p>
             予定・仕事・収支など、
-            毎日の情報をひとつにまとめるライフサポートアプリ。
+            毎日の情報をひとつにまとめる
+            ライフサポートアプリ。
             「管理するためのアプリ」ではなく、
             生活のベースになる存在を目指して開発。
           </p>
@@ -640,11 +531,16 @@
           </div>
 
 
+          <!-- ★ LIFE BASE公式サイトへ変更 -->
+
           <a
             class="text-link"
-            href="#contact"
+            href="https://life-base-redzone.web.app/"
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label="LIFE BASE公式サイトを開く"
           >
-            VIEW PROJECT
+            VIEW LIFE BASE
             <span>↗</span>
           </a>
 
@@ -654,10 +550,18 @@
 
 
 
+      <!-- ============================
+           NEXT PROJECTS
+      ============================ -->
+
       <div class="project-grid">
 
 
-        <article class="project-card coming reveal">
+        <article
+          class="project-card coming reveal"
+        >
+
+          <div class="coming-bg"></div>
 
           <div class="project-copy">
 
@@ -665,9 +569,9 @@
               PROJECT 002 / NEW GAME PROJECT
             </p>
 
-            <span class="classified">
+            <div class="classified">
               CLASSIFIED
-            </span>
+            </div>
 
             <h3>
               COMING<br>
@@ -679,17 +583,25 @@
               詳細は、まだ秘密。
             </p>
 
+
+            <div class="signal">
+
+              <span></span>
+              <span></span>
+              <span></span>
+              <span></span>
+
+            </div>
+
           </div>
 
         </article>
 
 
 
-        <article class="project-card next reveal delay-1">
-
-          <div class="plus">
-            +
-          </div>
+        <article
+          class="project-card next reveal delay-1"
+        >
 
           <div class="project-copy">
 
@@ -697,15 +609,24 @@
               PROJECT 003+ / NEXT
             </p>
 
+            <div class="plus">
+              +
+            </div>
+
             <h3>
               NEXT<br>
               PROJECT
             </h3>
 
             <p>
-              ゲームだけじゃない。<br>
-              次のアプリも、次のアイデアもREDZONEから。
+              ゲームだけじゃない。
+              次のアプリも、次のアイデアも
+              REDZONEから。
             </p>
+
+            <span class="soon-label">
+              MORE COMING SOON
+            </span>
 
           </div>
 
@@ -718,9 +639,9 @@
 
 
 
-    <!-- =====================================================
+    <!-- ==============================
          CREATOR
-         ===================================================== -->
+    ============================== -->
 
     <section
       class="creator"
@@ -728,9 +649,16 @@
     >
 
       <div
-        class="creator-inner reveal"
+        class="creator-inner creator-motion reveal"
         id="creatorMotion"
       >
+
+
+        <div
+          class="creator-speed-lines"
+          aria-hidden="true"
+        ></div>
+
 
         <div class="creator-copy">
 
@@ -739,25 +667,25 @@
           </p>
 
           <h2>
-
-            マーのゲーム配信
+            マーのゲーム配信<br>
 
             <span class="creator-channel">
               CHANNEL
             </span>
-
           </h2>
+
 
           <p>
             REDZONEに参加するゲーム配信チャンネル。<br>
             配信・コミュニティ・ゲーム活動はこちらから。
           </p>
 
+
           <a
-            class="btn btn-primary creator-stream-btn"
+            class="btn btn-primary creator-btn"
             href="https://arrymillionmar0328.wixsite.com/game-streaming-mar"
             target="_blank"
-            rel="noopener"
+            rel="noopener noreferrer"
           >
             STREAMING SITE
             <span>↗</span>
@@ -767,62 +695,89 @@
 
 
 
-        <div class="creator-stage">
+        <!-- CHARACTER -->
 
-          <div class="creator-visual">
-
-            <div class="creator-ring creator-ring-outer"></div>
-            <div class="creator-ring creator-ring-main"></div>
-            <div class="creator-ring creator-ring-inner"></div>
-
-
-            <div class="creator-character-wrap">
-
-              <div class="creator-character-frame">
-
-                <img
-                  src="./assets/mar-streamer.webp"
-                  alt="マーのゲーム配信キャラクター"
-                  class="creator-character"
-                >
-
-              </div>
-
-            </div>
+        <div
+          class="creator-stage"
+          aria-label="マーのゲーム配信キャラクター"
+        >
 
 
-            <span class="creator-stream-text stream-top">
-              NOW STREAMING
-            </span>
+          <div
+            class="creator-ring creator-ring-a"
+            aria-hidden="true"
+          ></div>
 
-            <span class="creator-stream-text stream-bottom">
-              NOW STREAMING
-            </span>
+          <div
+            class="creator-ring creator-ring-b"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="creator-ring creator-ring-c"
+            aria-hidden="true"
+          ></div>
 
 
-            <span class="creator-live-dot live-dot-1"></span>
-            <span class="creator-live-dot live-dot-2"></span>
-            <span class="creator-live-dot live-dot-3"></span>
+          <div
+            class="creator-pulse-dot dot-a"
+            aria-hidden="true"
+          ></div>
 
+          <div
+            class="creator-pulse-dot dot-b"
+            aria-hidden="true"
+          ></div>
+
+          <div
+            class="creator-pulse-dot dot-c"
+            aria-hidden="true"
+          ></div>
+
+
+
+          <div class="creator-character-wrap">
+
+            <img
+              src="assets/mar-streamer.webp"
+              alt="ヘッドホンとマイクでゲーム配信するマーのキャラクター"
+              class="creator-character"
+              loading="lazy"
+            />
+
+          </div>
+
+
+          <div
+            class="creator-live-label"
+            aria-hidden="true"
+          >
+            NOW STREAMING
+          </div>
+
+
+          <div
+            class="creator-live-label creator-live-label-bottom"
+            aria-hidden="true"
+          >
+            NOW STREAMING
           </div>
 
         </div>
 
 
         <div
-          class="creator-bg-mar"
+          class="creator-mark"
           aria-hidden="true"
         >
           MAR
         </div>
 
 
-        <div
-          class="creator-side-copy"
-          aria-hidden="true"
-        >
+        <div class="creator-kicker">
           OFFICIAL CREATOR / STREAMING
         </div>
+
 
       </div>
 
@@ -830,9 +785,9 @@
 
 
 
-    <!-- =====================================================
+    <!-- ==============================
          NEWS
-         ===================================================== -->
+    ============================== -->
 
     <section
       class="section news"
@@ -858,6 +813,7 @@
 
       <div class="news-list">
 
+
         <article class="news-item reveal">
 
           <time>
@@ -877,7 +833,10 @@
         </article>
 
 
-        <article class="news-item reveal delay-1">
+
+        <article
+          class="news-item reveal delay-1"
+        >
 
           <time>
             COMING
@@ -895,35 +854,39 @@
 
         </article>
 
+
       </div>
 
     </section>
 
 
 
-    <!-- =====================================================
+    <!-- ==============================
          CONTACT
-         ===================================================== -->
+    ============================== -->
 
     <section
       class="contact"
       id="contact"
     >
 
+      <div class="contact-glow"></div>
+
+
       <div class="contact-inner reveal">
 
         <p class="eyebrow">
-          CONTACT / SUPPORT
+          CONTACT / FOLLOW
         </p>
 
         <h2>
-          CONTACT<br>
+          ENTER THE<br>
           <span>REDZONE.</span>
         </h2>
 
         <p>
-          アプリ・ゲーム・不具合報告・配信活動など、<br>
-          GAME STUDIO REDZONEへのお問い合わせはこちら。
+          新作・アップデート・配信活動など、
+          REDZONEの最新情報をここから。
         </p>
 
 
@@ -931,11 +894,11 @@
 
           <a
             class="btn btn-primary"
-            href="https://forms.gle/4VypUChDwp1Zsv5v6"
+            href="https://arrymillionmar0328.wixsite.com/game-streaming-mar"
             target="_blank"
             rel="noopener noreferrer"
           >
-            CONTACT FORM
+            CREATOR SITE
             <span>↗</span>
           </a>
 
@@ -955,244 +918,52 @@
     </section>
 
 
-
-    <!-- =====================================================
-         INFORMATION
-         ===================================================== -->
-
-    <section
-      class="information"
-      id="information"
-    >
-
-      <div class="information-head reveal">
-
-        <p class="eyebrow">
-          REDZONE / INFORMATION
-        </p>
-
-        <h2>
-          INFORMATION.
-        </h2>
-
-      </div>
-
-
-      <div class="information-grid">
-
-
-        <!-- PRIVACY -->
-
-        <details class="legal-card">
-
-          <summary>
-
-            PRIVACY POLICY
-
-            <span class="legal-small">
-              個人情報・利用者情報の取り扱い
-            </span>
-
-          </summary>
-
-
-          <div class="legal-body">
-
-            <p>
-              GAME STUDIO REDZONE（以下「当スタジオ」）は、
-              本ウェブサイトおよび提供するサービスにおける
-              利用者情報を適切に取り扱います。
-            </p>
-
-            <h3>
-              1. 取得する情報
-            </h3>
-
-            <p>
-              本サイトでは、サイトの運営・改善・安全性確認等のため、
-              アクセス日時、利用端末、ブラウザ情報等が
-              サーバーまたは利用サービス側で記録される場合があります。
-            </p>
-
-            <h3>
-              2. お問い合わせフォーム
-            </h3>
-
-            <p>
-              お問い合わせフォームを通じて、
-              お名前、メールアドレス、
-              お問い合わせ内容等を取得する場合があります。
-            </p>
-
-            <h3>
-              3. 利用目的
-            </h3>
-
-            <p>
-              取得した情報は、
-              お問い合わせへの回答、
-              不具合等の確認、
-              必要な連絡のために利用します。
-            </p>
-
-            <h3>
-              4. 第三者への提供
-            </h3>
-
-            <p>
-              法令に基づく場合を除き、
-              ご本人の同意なく個人情報を第三者へ提供しません。
-            </p>
-
-            <h3>
-              5. Googleフォーム
-            </h3>
-
-            <p>
-              お問い合わせにはGoogleフォームを利用しています。
-              Googleによる情報の取り扱いについては、
-              Googleが定める規約をご確認ください。
-            </p>
-
-            <h3>
-              6. 本ポリシーの変更
-            </h3>
-
-            <p>
-              法令やサービス内容の変更等に応じ、
-              本ポリシーを必要に応じて変更する場合があります。
-            </p>
-
-          </div>
-
-        </details>
-
-
-
-        <!-- TERMS -->
-
-        <details class="legal-card">
-
-          <summary>
-
-            TERMS
-
-            <span class="legal-small">
-              当サイトの利用について
-            </span>
-
-          </summary>
-
-
-          <div class="legal-body">
-
-            <h3>
-              掲載内容
-            </h3>
-
-            <p>
-              本サイトに掲載しているアプリ、
-              ゲーム、開発中プロジェクトの内容は、
-              開発状況等により予告なく変更される場合があります。
-            </p>
-
-            <h3>
-              免責事項
-            </h3>
-
-            <p>
-              本サイトの利用または掲載情報を利用したことにより
-              発生した損害について、
-              法令上責任を負う場合を除き、
-              当スタジオは責任を負いません。
-            </p>
-
-            <h3>
-              著作権・知的財産権
-            </h3>
-
-            <p>
-              本サイトに掲載される文章、デザイン、ロゴ、
-              画像、アプリ画面その他のコンテンツに関する権利は、
-              当スタジオまたは正当な権利者に帰属します。
-            </p>
-
-          </div>
-
-        </details>
-
-
-
-        <!-- CONTACT -->
-
-        <details class="legal-card">
-
-          <summary>
-
-            CONTACT
-
-            <span class="legal-small">
-              GAME STUDIO REDZONEへのお問い合わせ
-            </span>
-
-          </summary>
-
-
-          <div class="legal-body">
-
-            <p>
-              アプリ、ゲーム、不具合報告、
-              配信・コラボ、ウェブサイト等に関するお問い合わせは、
-              専用フォームからお願いいたします。
-            </p>
-
-
-            <a
-              class="legal-form-button"
-              href="https://forms.gle/4VypUChDwp1Zsv5v6"
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              CONTACT FORM
-              <span>↗</span>
-            </a>
-
-
-            <p class="contact-note">
-              お問い合わせ内容によっては、
-              回答までお時間をいただく場合、
-              または回答できない場合があります。
-            </p>
-
-          </div>
-
-        </details>
-
-
-      </div>
-
-    </section>
-
-
   </main>
 
 
 
-  <div class="site-bottom">
+  <!-- ==============================
+       FOOTER
+  ============================== -->
 
-    <span>
-      GAME STUDIO REDZONE
-    </span>
+  <footer class="footer">
 
-    <span>
+    <div class="brand footer-brand">
+
+      <span class="brand-mark">
+        RZ
+      </span>
+
+      <span class="brand-copy">
+
+        <b>
+          REDZONE
+        </b>
+
+        <small>
+          GAME STUDIO
+        </small>
+
+      </span>
+
+    </div>
+
+
+    <p>
       © <span id="year"></span>
-      GAME STUDIO REDZONE
-    </span>
-
-  </div>
+      GAME STUDIO REDZONE.
+    </p>
 
 
-  <script src="./js/main.js?v=30"></script>
+    <p class="footer-note">
+      BUILD. PLAY. EVOLVE.
+    </p>
+
+  </footer>
+
+
+
+  <script src="js/main.js?v=5"></script>
 
 </body>
 </html>
