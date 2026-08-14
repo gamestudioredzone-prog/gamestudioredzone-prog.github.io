@@ -2,29 +2,16 @@ const nav = document.getElementById('nav');
 const toggle = document.getElementById('menuToggle');
 const glow = document.getElementById('cursorGlow');
 
-
-// ==============================
-// MOBILE MENU
-// ==============================
-
 if (toggle && nav) {
   toggle.addEventListener('click', () => {
     const open = nav.classList.toggle('open');
-
-    toggle.setAttribute(
-      'aria-expanded',
-      String(open)
-    );
+    toggle.setAttribute('aria-expanded', String(open));
   });
 
   document.querySelectorAll('.nav a').forEach(link => {
     link.addEventListener('click', () => {
       nav.classList.remove('open');
-
-      toggle.setAttribute(
-        'aria-expanded',
-        'false'
-      );
+      toggle.setAttribute('aria-expanded', 'false');
     });
   });
 }
@@ -34,18 +21,15 @@ if (toggle && nav) {
 // REVEAL
 // ==============================
 
-const observer = new IntersectionObserver(
-  (entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        entry.target.classList.add('visible');
-      }
-    });
-  },
-  {
-    threshold: 0.12
-  }
-);
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.classList.add('visible');
+    }
+  });
+}, {
+  threshold: 0.12
+});
 
 document.querySelectorAll('.reveal').forEach(el => {
   observer.observe(el);
@@ -58,8 +42,8 @@ document.querySelectorAll('.reveal').forEach(el => {
 
 if (glow) {
   window.addEventListener('mousemove', (e) => {
-    glow.style.left = e.clientX + 'px';
-    glow.style.top = e.clientY + 'px';
+    glow.style.left = `${e.clientX}px`;
+    glow.style.top = `${e.clientY}px`;
     glow.style.opacity = '1';
   });
 }
@@ -98,7 +82,8 @@ if (hero && visual) {
   });
 
   hero.addEventListener('mouseleave', () => {
-    visual.style.transform = 'translate(0,0)';
+    visual.style.transform =
+      'translate(0,0)';
   });
 }
 
@@ -111,7 +96,6 @@ const carousel =
   document.getElementById('projectCarousel');
 
 if (carousel) {
-
   const viewport =
     carousel.querySelector('.carousel-viewport');
 
@@ -134,31 +118,25 @@ if (carousel) {
   const next =
     carousel.querySelector('.carousel-next');
 
-
-  if (viewport && track && slides.length > 0) {
-
-    let currentIndex = 0;
+  if (
+    viewport &&
+    track &&
+    slides.length > 0
+  ) {
+    let index = 0;
     let startX = null;
-    let autoTimer = null;
+    let timer = null;
 
-
-    // ==============================
-    // SHOW SLIDE
-    // ==============================
-
-    function showSlide(index) {
-
-      currentIndex =
-        (index + slides.length) %
+    const show = (newIndex) => {
+      index =
+        (newIndex + slides.length) %
         slides.length;
 
       track.style.transform =
-        `translate3d(-${currentIndex * 100}%, 0, 0)`;
+        `translate3d(-${index * 100}%, 0, 0)`;
 
-      dots.forEach((dot, dotIndex) => {
-
-        const active =
-          dotIndex === currentIndex;
+      dots.forEach((dot, i) => {
+        const active = i === index;
 
         dot.classList.toggle(
           'active',
@@ -170,86 +148,48 @@ if (carousel) {
           active ? 'true' : 'false'
         );
       });
-    }
+    };
 
-
-    // ==============================
-    // NEXT / PREV
-    // ==============================
-
-    function nextSlide() {
-      showSlide(currentIndex + 1);
-    }
-
-    function prevSlide() {
-      showSlide(currentIndex - 1);
-    }
-
-
-    // ==============================
-    // AUTO PLAY
-    // ==============================
-
-    function stopAutoPlay() {
-
-      if (autoTimer !== null) {
-        clearInterval(autoTimer);
-        autoTimer = null;
+    const stop = () => {
+      if (timer) {
+        clearInterval(timer);
       }
-    }
 
-    function startAutoPlay() {
+      timer = null;
+    };
 
-      stopAutoPlay();
+    const start = () => {
+      stop();
 
-      autoTimer = setInterval(() => {
-        nextSlide();
+      timer = setInterval(() => {
+        show(index + 1);
       }, 3000);
-    }
-
-
-    // ==============================
-    // ARROW BUTTONS
-    // ==============================
+    };
 
     if (prev) {
       prev.addEventListener('click', () => {
-        prevSlide();
-        startAutoPlay();
+        show(index - 1);
+        start();
       });
     }
 
     if (next) {
       next.addEventListener('click', () => {
-        nextSlide();
-        startAutoPlay();
+        show(index + 1);
+        start();
       });
     }
 
-
-    // ==============================
-    // DOT BUTTONS
-    // ==============================
-
-    dots.forEach((dot, dotIndex) => {
-
+    dots.forEach((dot, i) => {
       dot.addEventListener('click', () => {
-
-        showSlide(dotIndex);
-
-        startAutoPlay();
+        show(i);
+        start();
       });
     });
-
-
-    // ==============================
-    // POINTER / SWIPE
-    // ==============================
 
     viewport.addEventListener(
       'pointerdown',
       (e) => {
-
         startX = e.clientX;
 
         if (viewport.setPointerCapture) {
@@ -263,41 +203,33 @@ if (carousel) {
     viewport.addEventListener(
       'pointerup',
       (e) => {
-
-        if (startX === null) return;
+        if (startX === null) {
+          return;
+        }
 
         const diff =
           e.clientX - startX;
 
         if (Math.abs(diff) >= 45) {
-
-          if (diff < 0) {
-            nextSlide();
-          } else {
-            prevSlide();
-          }
+          show(
+            index +
+            (diff < 0 ? 1 : -1)
+          );
         }
 
         startX = null;
 
-        startAutoPlay();
+        start();
       }
     );
 
     viewport.addEventListener(
       'pointercancel',
       () => {
-
         startX = null;
-
-        startAutoPlay();
+        start();
       }
     );
-
-
-    // ==============================
-    // KEYBOARD
-    // ==============================
 
     carousel.setAttribute(
       'tabindex',
@@ -307,42 +239,127 @@ if (carousel) {
     carousel.addEventListener(
       'keydown',
       (e) => {
-
         if (e.key === 'ArrowLeft') {
-          prevSlide();
-          startAutoPlay();
+          show(index - 1);
+          start();
         }
 
         if (e.key === 'ArrowRight') {
-          nextSlide();
-          startAutoPlay();
+          show(index + 1);
+          start();
         }
       }
     );
-
-
-    // ==============================
-    // PAGE VISIBILITY
-    // ==============================
 
     document.addEventListener(
       'visibilitychange',
       () => {
-
         if (document.hidden) {
-          stopAutoPlay();
+          stop();
         } else {
-          startAutoPlay();
+          start();
         }
       }
     );
 
-
-    // ==============================
-    // START
-    // ==============================
-
-    showSlide(0);
-    startAutoPlay();
+    show(0);
+    start();
   }
+}
+
+
+// ==============================
+// CREATOR / MAR MOTION
+// ==============================
+
+const creatorMotion =
+  document.getElementById(
+    'creatorMotion'
+  );
+
+if (creatorMotion) {
+  const stage =
+    creatorMotion.querySelector(
+      '.creator-stage'
+    );
+
+  const character =
+    creatorMotion.querySelector(
+      '.creator-character-wrap'
+    );
+
+  creatorMotion.addEventListener(
+    'mousemove',
+    (e) => {
+      if (
+        window.innerWidth < 1000 ||
+        !stage ||
+        !character
+      ) {
+        return;
+      }
+
+      const rect =
+        creatorMotion.getBoundingClientRect();
+
+      const px =
+        (
+          e.clientX -
+          rect.left
+        ) /
+        rect.width -
+        0.5;
+
+      const py =
+        (
+          e.clientY -
+          rect.top
+        ) /
+        rect.height -
+        0.5;
+
+      stage.style.transform =
+        `
+        translate3d(
+          ${px * 12}px,
+          ${py * 8}px,
+          0
+        )
+        rotateY(${px * 3}deg)
+        rotateX(${-py * 2}deg)
+        `;
+
+      character.style.filter =
+        `
+        drop-shadow(
+          ${-px * 16}px
+          ${-py * 10}px
+          22px
+          rgba(255,31,45,.16)
+        )
+        `;
+    }
+  );
+
+  creatorMotion.addEventListener(
+    'mouseleave',
+    () => {
+      if (
+        !stage ||
+        !character
+      ) {
+        return;
+      }
+
+      stage.style.transform =
+        `
+        translate3d(0,0,0)
+        rotateY(0)
+        rotateX(0)
+        `;
+
+      character.style.filter =
+        'none';
+    }
+  );
 }
