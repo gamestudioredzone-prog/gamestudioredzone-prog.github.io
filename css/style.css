@@ -408,3 +408,100 @@ a{color:inherit;text-decoration:none}
 .carousel-panel.panel-2 .project-shot{transform:translateX(-25%)}
 .carousel-panel.panel-3 .project-shot{transform:translateX(-50%)}
 .carousel-panel.panel-4 .project-shot{transform:translateX(-75%)}
+
+/* === PROJECT CAROUSEL FINAL SIZE FIX === */
+.project-card.lifebase{
+  grid-template-columns:minmax(420px,.95fr) minmax(0,1.05fr);
+  min-height:620px;
+}
+
+.project-visual-real{
+  min-height:620px;
+  padding:34px 28px;
+}
+
+.project-shot-frame.project-carousel{
+  width:100%;
+  max-width:620px;
+  min-height:560px;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.carousel-viewport{
+  width:100%;
+  height:560px;
+  overflow:hidden;
+  display:flex;
+  align-items:center;
+}
+
+.carousel-track{
+  width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+}
+
+.carousel-slide{
+  flex:0 0 100%;
+  min-width:100%;
+  height:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+
+.carousel-panel{
+  position:relative;
+  width:236px;
+  height:560px;
+  max-width:72%;
+  overflow:hidden;
+  background:#050505;
+  flex:0 0 auto;
+}
+
+.carousel-panel .project-shot{
+  position:absolute;
+  top:0;
+  left:0;
+  width:400%;
+  max-width:none;
+  height:100%;
+  object-fit:fill;
+}
+
+.carousel-panel.panel-1 .project-shot{transform:translateX(0)}
+.carousel-panel.panel-2 .project-shot{transform:translateX(-25%)}
+.carousel-panel.panel-3 .project-shot{transform:translateX(-50%)}
+.carousel-panel.panel-4 .project-shot{transform:translateX(-75%)}
+
+.carousel-arrow{
+  top:50%;
+  width:42px;
+  height:42px;
+  border-radius:50%;
+}
+
+.carousel-dots{
+  bottom:18px;
+}
+
+@media (max-width:1000px){
+  .project-card.lifebase{grid-template-columns:1fr}
+  .project-visual-real{min-height:560px}
+  .project-shot-frame.project-carousel{min-height:520px}
+  .carousel-viewport{height:520px}
+  .carousel-panel{width:219px;height:520px}
+}
+
+@media (max-width:700px){
+  .project-visual-real{padding:24px 14px;min-height:500px}
+  .project-shot-frame.project-carousel{min-height:470px}
+  .carousel-viewport{height:470px}
+  .carousel-panel{width:198px;height:470px;max-width:78%}
+}
