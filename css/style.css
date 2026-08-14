@@ -313,3 +313,98 @@ a{color:inherit;text-decoration:none}
   .footer-brand{width:100%}.footer-note{margin-left:0}
   .cursor-glow{display:none}
 }
+
+
+.project-carousel{position:relative}
+.carousel-viewport{
+  width:100%;
+  overflow:hidden;
+  touch-action:pan-y;
+  cursor:grab;
+}
+.carousel-viewport:active{cursor:grabbing}
+.carousel-track{
+  display:flex;
+  transition:transform .38s ease;
+  will-change:transform;
+}
+.carousel-slide{
+  flex:0 0 100%;
+  min-width:100%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  overflow:hidden;
+}
+.carousel-slide .project-shot{
+  width:100%;
+  height:auto;
+  display:block;
+}
+.carousel-arrow{
+  position:absolute;
+  top:50%;
+  z-index:4;
+  transform:translateY(-50%);
+  width:44px;
+  height:44px;
+  border:1px solid rgba(255,255,255,.20);
+  background:rgba(4,4,5,.76);
+  color:#fff;
+  font-size:20px;
+  cursor:pointer;
+  backdrop-filter:blur(10px);
+}
+.carousel-prev{left:14px}
+.carousel-next{right:14px}
+.carousel-arrow:hover{background:rgba(255,31,45,.85)}
+.carousel-dots{
+  position:absolute;
+  left:50%;
+  bottom:18px;
+  z-index:4;
+  transform:translateX(-50%);
+  display:flex;
+  gap:8px;
+}
+.carousel-dot{
+  width:9px;
+  height:9px;
+  padding:0;
+  border:1px solid rgba(255,255,255,.65);
+  border-radius:50%;
+  background:rgba(255,255,255,.15);
+  cursor:pointer;
+}
+.carousel-dot.active{
+  background:var(--red);
+  border-color:var(--red);
+}
+@media (max-width:700px){
+  .carousel-arrow{width:40px;height:40px}
+  .carousel-prev{left:8px}
+  .carousel-next{right:8px}
+  .carousel-dots{bottom:14px}
+}
+
+
+.carousel-panel{
+  position:relative;
+  width:min(100%,520px);
+  aspect-ratio:0.42;
+  overflow:hidden;
+  background:#050505;
+}
+.carousel-panel .project-shot{
+  position:absolute;
+  top:0;
+  left:0;
+  width:400%;
+  max-width:none;
+  height:100%;
+  object-fit:fill;
+}
+.carousel-panel.panel-1 .project-shot{transform:translateX(0)}
+.carousel-panel.panel-2 .project-shot{transform:translateX(-25%)}
+.carousel-panel.panel-3 .project-shot{transform:translateX(-50%)}
+.carousel-panel.panel-4 .project-shot{transform:translateX(-75%)}
