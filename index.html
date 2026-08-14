@@ -1,0 +1,256 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070707" />
+  <meta name="description" content="GAME STUDIO REDZONE — ゲーム・アプリ開発スタジオ。LIFE BASEをはじめ、次の体験を形にしていきます。" />
+  <title>GAME STUDIO REDZONE</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <div class="noise"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <header class="site-header" id="top">
+    <a class="brand" href="#top" aria-label="REDZONE ホーム">
+      <span class="brand-mark">RZ</span>
+      <span class="brand-copy">
+        <b>REDZONE</b>
+        <small>GAME STUDIO</small>
+      </span>
+    </a>
+
+    <button class="menu-toggle" id="menuToggle" aria-label="メニューを開く" aria-expanded="false">
+      <span></span><span></span>
+    </button>
+
+    <nav class="nav" id="nav">
+      <a href="#about">ABOUT</a>
+      <a href="#projects">PROJECTS</a>
+      <a href="#creator">CREATOR</a>
+      <a href="#news">NEWS</a>
+      <a href="#contact">CONTACT</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div class="hero-grid"></div>
+      <div class="hero-orb orb-a"></div>
+      <div class="hero-orb orb-b"></div>
+
+      <div class="hero-copy reveal">
+        <p class="eyebrow">GAME STUDIO / APP DEVELOPMENT</p>
+        <h1>
+          <span>BREAK THE</span>
+          <strong>RED<span>ZONE</span></strong>
+        </h1>
+        <p class="hero-ja">遊びの限界を、超えていく。</p>
+        <p class="hero-lead">
+          ゲームも、生活を支えるアプリも。<br>
+          アイデアを「使いたくなる体験」へ。
+        </p>
+        <div class="hero-actions">
+          <a class="btn btn-primary" href="#projects">PROJECTS <span>↗</span></a>
+          <a class="btn btn-ghost" href="#about">ABOUT REDZONE <span>→</span></a>
+        </div>
+      </div>
+
+      <div class="hero-visual reveal delay-1" aria-hidden="true">
+        <div class="ring ring-1"></div>
+        <div class="ring ring-2"></div>
+        <div class="ring ring-3"></div>
+        <div class="core-logo">R<span>Z</span></div>
+        <div class="vertical-copy">CREATE / PLAY / BUILD / REPEAT</div>
+      </div>
+
+      <div class="hero-status">
+        <span class="pulse"></span>
+        <span>REDZONE // ACTIVE DEVELOPMENT</span>
+      </div>
+    </section>
+
+    <section class="ticker" aria-label="REDZONE keywords">
+      <div class="ticker-track">
+        <span>GAME DEVELOPMENT</span><i>●</i>
+        <span>APP DEVELOPMENT</span><i>●</i>
+        <span>CREATIVE</span><i>●</i>
+        <span>FUN FIRST</span><i>●</i>
+        <span>KEEP BUILDING</span><i>●</i>
+        <span>GAME DEVELOPMENT</span><i>●</i>
+        <span>APP DEVELOPMENT</span><i>●</i>
+        <span>CREATIVE</span><i>●</i>
+        <span>FUN FIRST</span><i>●</i>
+        <span>KEEP BUILDING</span><i>●</i>
+      </div>
+    </section>
+
+    <section class="section about" id="about">
+      <div class="section-head reveal">
+        <p class="eyebrow">ABOUT US</p>
+        <h2>まだ、作るけどね。</h2>
+        <p>
+          REDZONEは、ジャンルに縛られず「こんなの欲しかった」を形にしていく開発スタジオです。
+          小さく始めても、見た目も使い心地も妥協しない。ゲームも実用アプリも、本気で育てていきます。
+        </p>
+      </div>
+
+      <div class="principles">
+        <article class="principle reveal">
+          <span>01</span>
+          <h3>CREATIVE</h3>
+          <p>既存の型に寄せすぎず、REDZONEらしい体験を作る。</p>
+        </article>
+        <article class="principle reveal delay-1">
+          <span>02</span>
+          <h3>FUN FIRST</h3>
+          <p>触った瞬間から、ちょっと楽しい。その感覚を大切にする。</p>
+        </article>
+        <article class="principle reveal delay-2">
+          <span>03</span>
+          <h3>KEEP BUILDING</h3>
+          <p>完成で終わらない。使いながら、遊びながら、もっと良くする。</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section projects" id="projects">
+      <div class="section-title-row reveal">
+        <div>
+          <p class="eyebrow">PROJECTS</p>
+          <h2>BUILT IN REDZONE.</h2>
+        </div>
+        <p class="section-note">Apps, games, and the next project.</p>
+      </div>
+
+      <article class="project-card lifebase reveal">
+        <div class="project-visual">
+          <div class="lb-orbit"></div>
+          <div class="phone">
+            <div class="phone-top"></div>
+            <div class="phone-ui">
+              <span class="pill">LIFE BASE</span>
+              <b>15</b>
+              <small>YOUR DAY, ORGANIZED.</small>
+              <div class="mini-row"><i></i><i></i><i></i></div>
+              <div class="mini-card"></div>
+              <div class="mini-card short"></div>
+            </div>
+          </div>
+          <div class="lb-badge">LB</div>
+        </div>
+        <div class="project-copy">
+          <p class="project-index">PROJECT 001 / LIFE MANAGEMENT APP</p>
+          <h3>LIFE BASE</h3>
+          <p>
+            予定・仕事・収支など、毎日の情報をひとつにまとめるライフサポートアプリ。
+            「管理するためのアプリ」ではなく、生活のベースになる存在を目指して開発。
+          </p>
+          <div class="project-tags">
+            <span>SCHEDULE</span><span>WORK</span><span>FINANCE</span><span>LIFE</span>
+          </div>
+          <a class="text-link" href="#contact">VIEW PROJECT <span>↗</span></a>
+        </div>
+      </article>
+
+      <div class="project-grid">
+        <article class="project-card coming reveal">
+          <div class="coming-bg"></div>
+          <div class="project-copy">
+            <p class="project-index">PROJECT 002 / NEW GAME PROJECT</p>
+            <div class="classified">CLASSIFIED</div>
+            <h3>COMING<br>SOON</h3>
+            <p>新作ゲームプロジェクト進行中。<br>詳細は、まだ秘密。</p>
+            <div class="signal"><span></span><span></span><span></span><span></span></div>
+          </div>
+        </article>
+
+        <article class="project-card next reveal delay-1">
+          <div class="project-copy">
+            <p class="project-index">PROJECT 003+ / NEXT</p>
+            <div class="plus">+</div>
+            <h3>NEXT<br>PROJECT</h3>
+            <p>ゲームだけじゃない。次のアプリも、次のアイデアもREDZONEから。</p>
+            <span class="soon-label">MORE COMING SOON</span>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="creator" id="creator">
+      <div class="creator-inner reveal">
+        <div class="creator-kicker">OFFICIAL CREATOR / STREAMING</div>
+        <div class="creator-copy">
+          <p class="eyebrow">CONNECTED TO REDZONE</p>
+          <h2>マーのゲーム配信</h2>
+          <p>
+            REDZONEに参加するゲーム配信チャンネル。
+            配信・コミュニティ・ゲーム活動はこちらから。
+          </p>
+          <a class="btn btn-primary" href="https://arrymillionmar0328.wixsite.com/game-streaming-mar" target="_blank" rel="noopener">
+            STREAMING SITE <span>↗</span>
+          </a>
+        </div>
+        <div class="creator-mark" aria-hidden="true">MAR</div>
+      </div>
+    </section>
+
+    <section class="section news" id="news">
+      <div class="section-title-row reveal">
+        <div>
+          <p class="eyebrow">NEWS / UPDATE</p>
+          <h2>WHAT'S NEXT.</h2>
+        </div>
+      </div>
+
+      <div class="news-list">
+        <article class="news-item reveal">
+          <time>2026.08</time>
+          <span class="news-tag">REDZONE</span>
+          <p>GAME STUDIO REDZONE 公式サイト始動。</p>
+          <i>→</i>
+        </article>
+        <article class="news-item reveal delay-1">
+          <time>COMING</time>
+          <span class="news-tag">PROJECT</span>
+          <p>新作プロジェクト情報は順次公開予定。</p>
+          <i>→</i>
+        </article>
+      </div>
+    </section>
+
+    <section class="contact" id="contact">
+      <div class="contact-glow"></div>
+      <div class="contact-inner reveal">
+        <p class="eyebrow">CONTACT / FOLLOW</p>
+        <h2>ENTER THE<br><span>REDZONE.</span></h2>
+        <p>新作・アップデート・配信活動など、REDZONEの最新情報をここから。</p>
+        <div class="contact-actions">
+          <a class="btn btn-primary" href="https://arrymillionmar0328.wixsite.com/game-streaming-mar" target="_blank" rel="noopener">
+            CREATOR SITE <span>↗</span>
+          </a>
+          <a class="btn btn-ghost" href="#top">BACK TO TOP <span>↑</span></a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="brand footer-brand">
+      <span class="brand-mark">RZ</span>
+      <span class="brand-copy">
+        <b>REDZONE</b>
+        <small>GAME STUDIO</small>
+      </span>
+    </div>
+    <p>© <span id="year"></span> GAME STUDIO REDZONE.</p>
+    <p class="footer-note">BUILD. PLAY. EVOLVE.</p>
+  </footer>
+
+  <script src="js/main.js"></script>
+</body>
+</html>
