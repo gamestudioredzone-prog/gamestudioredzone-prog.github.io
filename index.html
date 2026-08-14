@@ -9,7 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700;800;900&family=Noto+Sans+JP:wght@400;500;700;900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="css/style.css?v=3" />
+  <link rel="stylesheet" href="css/style.css?v=4" />
 </head>
 <body>
   <div class="noise"></div>
@@ -224,20 +224,43 @@
     </section>
 
     <section class="creator" id="creator">
-      <div class="creator-inner reveal">
-        <div class="creator-kicker">OFFICIAL CREATOR / STREAMING</div>
+      <div class="creator-inner creator-motion reveal" id="creatorMotion">
+        <div class="creator-speed-lines" aria-hidden="true"></div>
         <div class="creator-copy">
           <p class="eyebrow">CONNECTED TO REDZONE</p>
-          <h2>マーのゲーム配信</h2>
+          <h2>マーのゲーム配信<br><span class="creator-channel">CHANNEL</span></h2>
           <p>
-            REDZONEに参加するゲーム配信チャンネル。
+            REDZONEに参加するゲーム配信チャンネル。<br>
             配信・コミュニティ・ゲーム活動はこちらから。
           </p>
-          <a class="btn btn-primary" href="https://arrymillionmar0328.wixsite.com/game-streaming-mar" target="_blank" rel="noopener">
+          <a class="btn btn-primary creator-btn" href="https://arrymillionmar0328.wixsite.com/game-streaming-mar" target="_blank" rel="noopener">
             STREAMING SITE <span>↗</span>
           </a>
         </div>
+
+        <div class="creator-stage" aria-label="マーのゲーム配信キャラクター">
+          <div class="creator-ring creator-ring-a" aria-hidden="true"></div>
+          <div class="creator-ring creator-ring-b" aria-hidden="true"></div>
+          <div class="creator-ring creator-ring-c" aria-hidden="true"></div>
+          <div class="creator-pulse-dot dot-a" aria-hidden="true"></div>
+          <div class="creator-pulse-dot dot-b" aria-hidden="true"></div>
+          <div class="creator-pulse-dot dot-c" aria-hidden="true"></div>
+
+          <div class="creator-character-wrap">
+            <img
+              src="assets/mar-streamer.webp"
+              alt="ヘッドホンとマイクでゲーム配信するマーのキャラクター"
+              class="creator-character"
+              loading="lazy"
+            />
+          </div>
+
+          <div class="creator-live-label" aria-hidden="true">NOW STREAMING</div>
+          <div class="creator-live-label creator-live-label-bottom" aria-hidden="true">NOW STREAMING</div>
+        </div>
+
         <div class="creator-mark" aria-hidden="true">MAR</div>
+        <div class="creator-kicker">OFFICIAL CREATOR / STREAMING</div>
       </div>
     </section>
 
@@ -293,6 +316,6 @@
     <p class="footer-note">BUILD. PLAY. EVOLVE.</p>
   </footer>
 
-  <script src="js/main.js?v=3"></script>
+  <script src="js/main.js?v=4"></script>
 </body>
 </html>
