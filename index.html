@@ -129,13 +129,59 @@
 
       <article class="project-card lifebase reveal">
         <div class="project-visual project-visual-real">
-          <div class="project-shot-frame">
-            <img
-              src="assets/lifebase-showcase.png"
-              alt="LIFE BASEとPACHI BASEを実際に使用したときの画面イメージ"
-              class="project-shot"
-              loading="lazy"
-            />
+          <div class="project-shot-frame project-carousel" id="projectCarousel">
+            <button class="carousel-arrow carousel-prev" type="button" aria-label="前の画面">←</button>
+            <div class="carousel-viewport">
+              <div class="carousel-track">
+                <div class="carousel-slide">
+                  <div class="carousel-panel panel-1">
+                    <img
+                      src="assets/lifebase-showcase.png"
+                      alt="PACHI BASE 今月の収支グラフ画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="carousel-panel panel-2">
+                    <img
+                      src="assets/lifebase-showcase.png"
+                      alt="PACHI BASE 今日・今月の成績画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="carousel-panel panel-3">
+                    <img
+                      src="assets/lifebase-showcase.png"
+                      alt="LIFE BASE ホーム画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+                <div class="carousel-slide">
+                  <div class="carousel-panel panel-4">
+                    <img
+                      src="assets/lifebase-showcase.png"
+                      alt="LIFE BASE 今月のまとめ画面"
+                      class="project-shot"
+                      loading="lazy"
+                    />
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button class="carousel-arrow carousel-next" type="button" aria-label="次の画面">→</button>
+            <div class="carousel-dots" aria-label="画面位置">
+              <button class="carousel-dot active" type="button" aria-label="1枚目"></button>
+              <button class="carousel-dot" type="button" aria-label="2枚目"></button>
+              <button class="carousel-dot" type="button" aria-label="3枚目"></button>
+              <button class="carousel-dot" type="button" aria-label="4枚目"></button>
+            </div>
             <div class="project-shot-label">REAL APP UI / SAMPLE DATA</div>
           </div>
         </div>
